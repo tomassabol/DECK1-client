@@ -1,21 +1,24 @@
 <template>
     <div
-        class="flex w-80 bg-[#F5F5F5] h-screen absolute justify-center items-center"
+        class="flex w-80 bg-[#F5F5F5] h-screen flex-col justify-between items-center"
     >
-        <div class="logo">
-            <img
-                src="../../public/images/deck1-logo.svg"
-                class="initial loading"
-                data-was-processed="true"
-            />
+        <div class="logo mt-10">
+            <Logo />
         </div>
-        <ol class="flex flex-col">
-            <li>Dashboard</li>
-            <li>Daily Reports</li>
-            <li>Daily Updates</li>
-            <li>Sites</li>
-            <li>Profile</li>
+        <ol class="flex flex-col font-bold text-2xl">
+            <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>
+            <router-link :to="{ name: 'DailyReports' }"
+                >Daily Reports</router-link
+            >
+            <router-link :to="{ name: 'DailyUpdates' }"
+                >Daily Updates</router-link
+            >
+            <router-link :to="{ name: 'Sites' }">Sites</router-link>
+            <router-link :to="{ name: 'Profile' }">Profile</router-link>
         </ol>
+        <div class="mb-14">Log Out</div>
     </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Logo from "./Logo.vue";
+</script>
