@@ -5,27 +5,27 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
         name: "Dashboard",
-        component: () => import("../components/Dashboard.vue"),
+        component: () => import("../views/DashboardView.vue"),
     },
     {
         path: "/DailyReports",
         name: "DailyReports",
-        component: () => import("../components/DailyReports.vue"),
+        component: () => import("../views/DailyReportsView.vue"),
     },
     {
         path: "/DailyUpdates",
         name: "DailyUpdates",
-        component: () => import("../components/DailyUpdates.vue"),
+        component: () => import("../views/DailyUpdatesView.vue"),
     },
     {
         path: "/Sites",
         name: "Sites",
-        component: () => import("../components/Sites.vue"),
+        component: () => import("../views/SitesView.vue"),
     },
     {
         path: "/Profile",
         name: "Profile",
-        component: () => import("../components/Profile.vue"),
+        component: () => import("../views/ProfileView.vue"),
     },
 ];
 

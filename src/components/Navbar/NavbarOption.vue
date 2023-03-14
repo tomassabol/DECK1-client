@@ -6,7 +6,7 @@
     >
         <div class="flex items-center px-1.5">
             <img
-                :src="`/icons/${option.replaceAll(' ', '')}.png`"
+                :src="`/icons/${option.replaceAll(' ', '')}-selected.svg`"
                 alt=""
                 class="w-10 p-2"
             />
@@ -14,10 +14,14 @@
         </div>
     </router-link>
 
-    <router-link v-else :to="{ name: option.replaceAll(' ', '') }">
+    <router-link
+        v-else
+        :to="{ name: option.replaceAll(' ', '') }"
+        class="flex items-center px-3"
+    >
         <div class="flex items-center px-1.5">
             <img
-                :src="`/icons/${option.replaceAll(' ', '')}.png`"
+                :src="`/icons/${option.replaceAll(' ', '')}.svg`"
                 alt=""
                 class="w-10 p-2"
             />
