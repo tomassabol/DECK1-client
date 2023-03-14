@@ -1,6 +1,8 @@
 <template>
-    <div class="Sites">
-        <h1>Sites</h1>
-    </div>
+    <PageTitle :primaryText="title" />
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PageTitle from "../components/PageTitle.vue";
+
+const title = "Sites";
+</script>
