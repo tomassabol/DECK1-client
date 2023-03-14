@@ -4,9 +4,6 @@
             :primaryText="`Welcome, ${name}!`"
             :secondaryText="position"
         />
-        <div class="flex items-end justify-end">
-            <ButtonReusable :text="`New dashboard?`" />
-        </div>
     </div>
 </template>
 <script setup lang="ts">
