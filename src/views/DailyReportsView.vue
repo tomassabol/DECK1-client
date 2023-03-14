@@ -4,11 +4,13 @@
         <div class="flex items-end justify-end">
             <ButtonReusable text="New Report" />
         </div>
+        <Table />
     </div>
 </template>
 <script setup lang="ts">
 import PageTitle from "../components/PageTitle.vue";
 import ButtonReusable from "../components/Buttons/ButtonReusable.vue";
+import Table from "../components/Tables/Table.vue";
 
 const title = "Daily Reports";
 </script>
