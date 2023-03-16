@@ -1,6 +1,6 @@
 namespace Types {
     export type Update = {
-        flightNumber: string;
+        id: string; // flight number
         date: Date;
         flight: boolean;
         reason: NoFlightReason | null;
