@@ -25,7 +25,7 @@ const tableHeaders: Types.TableHeader = {
 
 const tableData: Types.Update[] = [
     {
-        flightNumber: "123",
+        id: "123",
         date: new Date("2023-02-14"),
         flight: true,
         reason: null,
@@ -33,7 +33,7 @@ const tableData: Types.Update[] = [
         baseAndEquipment: false,
     },
     {
-        flightNumber: "124",
+        id: "124",
         date: new Date("2023-02-14"),
         flight: false,
         reason: null,
