@@ -4,13 +4,44 @@
         <div class="flex items-end justify-end">
             <ButtonReusable text="New Report" />
         </div>
-        <Table />
+        <Table :tableHeaders="tableHeaders" :tableData="tableData" />
     </div>
 </template>
 <script setup lang="ts">
 import PageTitle from "../components/PageTitle.vue";
 import ButtonReusable from "../components/Buttons/ButtonReusable.vue";
-import Table from "../components/Tables/Table.vue";
+import Table from "../components/Tables/TableReusable.vue";
 
 const title = "Daily Reports";
+
+// TODO: retrieve data from api
+const tableHeaders: Types.TableHeader = {
+    id: "ID",
+    acModel: "A/C Model",
+    acRegistration: "A/C Registration",
+    date: "Date",
+    pilot: "Pilot",
+    hoistOperator: "Hoist Operator",
+    dailyUpdate: "Daily Update",
+};
+const tableData: Types.Report[] = [
+    {
+        id: "123",
+        acModel: "EC 145",
+        acRegistration: "D-HTMK",
+        date: new Date("2023-02-14"),
+        pilot: "SRO",
+        hoistOperator: "BRA",
+        dailyUpdate: true,
+    },
+    {
+        id: "124",
+        acModel: "EC 145",
+        acRegistration: "D-HTMK",
+        date: new Date("2023-02-14"),
+        pilot: "SRO",
+        hoistOperator: "BRA",
+        dailyUpdate: true,
+    },
+];
 </script>
