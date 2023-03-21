@@ -8,9 +8,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "../components/PageTitle.vue";
-import ButtonReusable from "../components/Buttons/ButtonReusable.vue";
-import Table from "../components/Tables/TableReusable.vue";
+import PageTitle from "@/components/PageTitle.vue";
+import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
+import Table from "@/components/Tables/TableReusable.vue";
 
 const title = "Daily Updates";
 

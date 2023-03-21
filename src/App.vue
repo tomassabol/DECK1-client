@@ -6,6 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from "./components/Navbar/Navbar.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
 import "@fortawesome/fontawesome-free/js/all.js";
 </script>

@@ -5,32 +5,32 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
         name: "Dashboard",
-        component: () => import("../views/DashboardView.vue"),
+        component: () => import("@/views/DashboardView.vue"),
     },
     {
         path: "/DailyReports",
         name: "DailyReports",
-        component: () => import("../views/DailyReportsView.vue"),
+        component: () => import("@/views/DailyReportsView.vue"),
     },
     {
         path: "/DailyReports/:id",
         name: "DailyReport",
-        component: () => import("../views/Flights/DailyReportView.vue"),
+        component: () => import("@/views/Flights/DailyReportView.vue"),
     },
     {
         path: "/DailyUpdates",
         name: "DailyUpdates",
-        component: () => import("../views/DailyUpdatesView.vue"),
+        component: () => import("@/views/DailyUpdatesView.vue"),
     },
     {
         path: "/Sites",
         name: "Sites",
-        component: () => import("../views/SitesView.vue"),
+        component: () => import("@/views/SitesView.vue"),
     },
     {
         path: "/Profile",
         name: "Profile",
-        component: () => import("../views/ProfileView.vue"),
+        component: () => import("@/views/ProfileView.vue"),
     },
 ];
 

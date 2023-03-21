@@ -2,12 +2,12 @@
     <table class="mt-4">
         <tr
             v-for="data in tableData"
-            class="flex justify-between bg-gray-50 py-2"
+            class="flex justify-between bg-gray-50 py-2 hover:cursor-pointer"
         >
                 <td
                     v-for="value in Object.values(data)"
                     class="w-18 mx-6 flex items-center justify-center"
-                    @click="redirect(data.id)"
+                    @click=" redirect(data.id)"
                 >
                     <span v-if="(value instanceof Date)">{{
                         `${value.getDate()}.${value.getMonth()}.${value.getFullYear()}`

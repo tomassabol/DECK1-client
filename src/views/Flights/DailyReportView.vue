@@ -1,11 +1,8 @@
 <template>
-    <PageTitle primaryText="Flights"></PageTitle>
+    <div class="flex flex-col mx-14 my-14 w-4/5">
+        <PageTitle primaryText="Flights" />
+    </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "../../components/PageTitle.vue";
-
-const props = defineProps<{
-    id: number;
-    // tableFlightData?: Types.Flights[];
-}>();
+import PageTitle from "@/components/PageTitle.vue";
 </script>

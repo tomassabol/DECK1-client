@@ -12,7 +12,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import.meta.glob("../../public/icons/Helicopter.svg", {
+import.meta.glob("@/@/public/icons/Helicopter.svg", {
     as: "raw",
 });
 </script>

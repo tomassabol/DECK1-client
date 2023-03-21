@@ -7,8 +7,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "../components/PageTitle.vue";
-import ButtonReusable from "../components/Buttons/ButtonReusable.vue";
+import PageTitle from "@/components/PageTitle.vue";
+import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 
 const title = "Sites";
 </script>
