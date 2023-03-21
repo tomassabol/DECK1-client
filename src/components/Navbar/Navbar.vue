@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex w-80 bg-[#F5F5F5] h-screen flex-col justify-between items-center"
+        class="flex w-80 bg-[#F5F5F5] h-screen flex-col justify-between items-center sticky top-0"
     >
         <router-link :to="{ name: 'Dashboard' }" class="mt-10">
             <img
