@@ -8,8 +8,9 @@ import TableBody from "./TableBody.vue";
 
 const props = defineProps<{
     tableHeaders: Types.TableHeader;
-    tableData: Types.Report[] | Types.Update[];
-    tableReportData?: Types.Report[]; // | Types.Flights[];
+    tableData: Types.Report[] | Types.Update[] | Types.Flight[];
+    tableReportData?: Types.Report[];
     tableUpdateData?: Types.Update[];
+    tableFlightData?: Types.Flight[];
 }>();
 </script>

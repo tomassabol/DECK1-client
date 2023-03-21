@@ -12,5 +12,14 @@ namespace Types {
         reason?: string;
         maintenance?: string;
         baseAndEquipment?: string;
+        from?: string;
+        via?: string;
+        to?: string;
+        ETD?: string;
+        ATD?: string;
+        ETA?: string;
+        ATA?: string;
+        delay?: string;
+        Code?: string;
     };
 }
