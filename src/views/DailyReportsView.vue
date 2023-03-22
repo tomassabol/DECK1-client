@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-6 mx-14 my-14 w-4/5">
         <PageTitle :primaryText="title" />
         <div class="flex items-end justify-end">
-            <ButtonReusable text="New Report" />
+            <ButtonReusable text="New Report" @click="navigate" />
         </div>
         <Table
             :tableHeaders="tableHeaders"
@@ -12,9 +12,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "@/components/PageTitle.vue";
+import PageTitle from "@/components/Headers/PageTitle.vue";
 import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 import Table from "@/components/Tables/TableReusable.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const title = "Daily Reports";
 
@@ -48,4 +51,6 @@ const tableData: Types.Report[] = [
         dailyUpdate: true,
     },
 ];
+
+function navigate() {}
 </script>

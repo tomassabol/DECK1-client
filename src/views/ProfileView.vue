@@ -4,7 +4,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "@/components/PageTitle.vue";
+import PageTitle from "@/components/Headers/PageTitle.vue";
 
 const title = "Profile";
 </script>

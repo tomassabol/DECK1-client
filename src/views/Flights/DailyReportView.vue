@@ -3,7 +3,7 @@
         <PageTitle primaryText="Flights" />
         <DFRDetails />
         <div class="flex items-end justify-end">
-            <ButtonReusable text="New Flight" />
+            <ButtonReusable text="New Flight" @click="navigate" />
         </div>
         <Table
             :tableHeaders="tableHeaders"
@@ -20,10 +20,13 @@
     </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "@/components/PageTitle.vue";
+import PageTitle from "@/components/Headers/PageTitle.vue";
 import DFRDetails from "@/components/DFR/DFRDetails.vue";
 import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 import Table from "@/components/Tables/TableReusable.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 // TODO: retrieve data from api
 const tableHeaders: Types.TableHeader = {
@@ -64,4 +67,8 @@ const tableData: Types.Flight[] = [
         Code: "B",
     },
 ];
+
+function navigate() {
+    router.push({ name: "Flight", params: { id: "124" } });
+}
 </script>

@@ -7,13 +7,11 @@
         "
         :aria-pressed="pressed"
         :type="props.type"
-        :class="{
-            'bg-indigo-700': loading === true || disabled === true,
-            'cursor-wait': loading === true,
-            'bg-red-600 hover:bg-red-700': warningBtn === true,
-        }"
-        class="inline-flex items-center rounded-lg border border-transparent bg-[#5150F4] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 h-fit w-fit"
+        class="inline-flex items-center rounded-lg border-transparent px-4 py-2 text-base font-medium shadow-sm focus:outline-none focus:ring-2bg-white border-2 border-gray-200 hover:bg-gray-50 text-gray-800 focus:ring-indigo-500 focus:ring-offset-2 h-fit w-fit"
     >
+        <div v-if="props.loading === false" class="rotate-180">
+            <i aria-hidden="true" class="fas fa-long-arrow-right ml-2"></i>
+        </div>
         <div v-if="props.success === true">
             <i
                 role="status"
@@ -44,11 +42,7 @@
             </svg>
         </div>
         <span v-if="props.loading === false">{{ props.text }}</span>
-        <span v-else>{{ props.loadingText }}</span>
         <slot></slot>
-        <div v-if="props.loading === false">
-            <i aria-hidden="true" class="fas fa-long-arrow-right ml-2"></i>
-        </div>
     </button>
 </template>
 
@@ -62,8 +56,6 @@ interface Props {
     loading?: boolean;
     success?: boolean;
     text?: string;
-    loadingText?: string;
-    warningBtn?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -72,8 +64,6 @@ const props = withDefaults(defineProps<Props>(), {
     disabled: false,
     loading: false,
     success: false,
-    text: "Submit",
-    loadingText: "Loading...",
-    warningBtn: false,
+    text: "Back",
 });
 </script>

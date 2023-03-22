@@ -18,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import CardReusable from "@/components/CardReusable.vue";
-import PageTitle from "@/components/PageTitle.vue";
+import PageTitle from "@/components/Headers/PageTitle.vue";
 import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 // TODO: Get the name from the jwt token
 const name = "Jim Nielsen";
