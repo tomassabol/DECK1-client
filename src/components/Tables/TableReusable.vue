@@ -1,5 +1,5 @@
 <template>
-    <div class="border border-gray-100 rounded-xl">
+    <div class="border border-gray-100 rounded-xl shadow-md">
         <table class="w-full">
             <tr>
                 <th v-for="header in tableHeaders" class="p-3">
