@@ -1,10 +1,14 @@
 <template>
-    <div class="flex flex-col mx-14 my-14 w-4/5">
+    <div class="flex flex-col gap-6 mx-14 my-14 w-4/5">
         <PageTitle :primaryText="title" />
         <div class="flex items-end justify-end">
             <ButtonReusable text="New Report" />
         </div>
-        <Table :tableHeaders="tableHeaders" :tableData="tableData" />
+        <Table
+            :tableHeaders="tableHeaders"
+            :tableData="tableData"
+            :reports="true"
+        />
     </div>
 </template>
 <script setup lang="ts">

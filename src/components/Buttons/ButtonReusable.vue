@@ -10,6 +10,8 @@
         :class="{
             'bg-indigo-700': loading === true || disabled === true,
             'cursor-wait': loading === true,
+            'bg-red-600': warningBtn === true,
+            'hover:bg-red-700': warningBtn === true,
         }"
         class="inline-flex items-center rounded-lg border border-transparent bg-[#5150F4] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 h-fit w-fit"
     >
@@ -62,6 +64,7 @@ interface Props {
     success?: boolean;
     text?: string;
     loadingText?: string;
+    warningBtn?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -72,5 +75,6 @@ const props = withDefaults(defineProps<Props>(), {
     success: false,
     text: "Submit",
     loadingText: "Loading...",
+    warningBtn: false,
 });
 </script>

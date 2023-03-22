@@ -23,6 +23,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/DailyUpdatesView.vue"),
     },
     {
+        path: "/DailyUpdates/:id",
+        name: "DailyUpdate",
+        component: () => import("@/views/DailyUpdates/DailyUpdate.vue"),
+    },
+    {
+        path: "/Flights/:id",
+        name: "Flight",
+        component: () => import("@/views/Flights/FlightDetails.vue"),
+    },
+    {
         path: "/Sites",
         name: "Sites",
         component: () => import("@/views/SitesView.vue"),
