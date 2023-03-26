@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Flights/new",
     name: "NewFlight",
-    component: () => import("@/views/Flights/FlightDetails.vue"),
+    component: () => import("@/views/Flights/CreateFlight.vue"),
   },
   {
     path: "/Flights/:id",

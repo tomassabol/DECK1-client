@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col m-14 gap-12">
+  <div class="flex flex-col m-14 gap-12 w-full">
     <PageTitle primaryText="New Daily Report" />
     <!-- Flight Number -->
     <div class="flex flex-wrap gap-x-10 gap-y-4">

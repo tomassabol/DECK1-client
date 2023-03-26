@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col m-14 gap-12">
+  <div class="flex flex-col m-14 gap-12 w-full">
     <PageTitle primaryText="Flights" />
     <DFRDetails />
     <div class="flex items-end justify-end">
@@ -15,6 +15,7 @@
         text="Create Daily Update"
         :warningBtn="true"
         class="mt-4"
+        @click="newDailyUpdate"
       />
     </div>
   </div>
@@ -70,5 +71,9 @@ const tableData: Types.FlightTable[] = [
 
 function navigate() {
   router.push({ name: "NewFlight" });
+}
+
+function newDailyUpdate() {
+  router.push({ name: "NewDailyUpdate" });
 }
 </script>

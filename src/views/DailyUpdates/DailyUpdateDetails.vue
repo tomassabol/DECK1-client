@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col m-14 gap-12">
+  <div class="flex flex-col m-14 gap-12 w-full">
     <PageTitle :primaryText="'Daily Update'" />
     <!-- flight on this day -->
     <div class="flex flex-col gap-1">
@@ -29,33 +29,35 @@
     <!-- specify the reason -->
 
     <!-- maintenance -->
-    <div class="flex flex-col gap-12">
-      <PageTitle primaryText="Maintenance" />
-      <div class="flex flex-col gap-1">
-        <Label>Planned maintenance</Label>
-        <div class="flex flex-wrap gap-x-10 gap-y-4">
-          <InputButton>Yes</InputButton>
-          <InputButton>No</InputButton>
+    <div>
+      <PageTitle primaryText="Maintenance" class="py-4" />
+      <div class="flex flex-col gap-12">
+        <div class="flex flex-col gap-1">
+          <Label>Planned maintenance</Label>
+          <div class="flex flex-wrap gap-x-10 gap-y-4">
+            <InputButton>Yes</InputButton>
+            <InputButton>No</InputButton>
+          </div>
         </div>
-      </div>
-      <div class="flex flex-col gap-1">
-        <Label>Unplanned maintenance</Label>
-        <div class="flex flex-wrap gap-x-10 gap-y-4">
-          <InputButton>Yes</InputButton>
-          <InputButton>No</InputButton>
+        <div class="flex flex-col gap-1">
+          <Label>Unplanned maintenance</Label>
+          <div class="flex flex-wrap gap-x-10 gap-y-4">
+            <InputButton>Yes</InputButton>
+            <InputButton>No</InputButton>
+          </div>
         </div>
-      </div>
-      <div class="flex flex-col gap-1">
-        <Label>Others</Label>
-        <div class="flex flex-wrap gap-x-10 gap-y-4">
-          <InputButton>Yes</InputButton>
-          <InputButton>No</InputButton>
+        <div class="flex flex-col gap-1">
+          <Label>Others</Label>
+          <div class="flex flex-wrap gap-x-10 gap-y-4">
+            <InputButton>Yes</InputButton>
+            <InputButton>No</InputButton>
+          </div>
         </div>
-      </div>
-      <div class="flex flex-col gap-1">
-        <Label>Specify the reason: </Label>
-        <Label>(for other maintenance)</Label>
-        <TextArea></TextArea>
+        <div class="flex flex-col gap-1">
+          <Label>Specify the reason: </Label>
+          <Label>(for other maintenance)</Label>
+          <TextArea></TextArea>
+        </div>
       </div>
     </div>
     <div class="flex self-end gap-x-4">
