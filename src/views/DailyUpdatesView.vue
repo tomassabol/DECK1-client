@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-6 mx-14 my-14 w-4/5">
     <PageTitle :primaryText="title" />
     <div class="flex items-end justify-end">
-      <ButtonReusable text="New Update" />
+      <ButtonReusable text="New Update" @click="navigate" />
     </div>
     <Table
       :tableHeaders="tableHeaders"
@@ -15,7 +15,9 @@
 import PageTitle from "@/components/Headers/PageTitle.vue";
 import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 import Table from "@/components/Tables/TableReusable.vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const title = "Daily Updates";
 
 const tableHeaders: Types.TableHeader = {
@@ -45,4 +47,8 @@ const tableData: Types.UpdateSearch[] = [
     baseAndEquipment: false,
   },
 ];
+
+function navigate() {
+  router.push({ name: "DailyUpdate", params: { id: "124" } });
+}
 </script>
