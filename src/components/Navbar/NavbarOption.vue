@@ -1,10 +1,10 @@
 <template>
   <router-link
     v-if="option.replaceAll(' ', '') === currentRoute"
-    class="flex bg-[#222] text-white items-center rounded-xl p-1 px-3 w-full"
+    class="flex bg-[#222] text-white items-center rounded-xl w-full"
     :to="{ name: option.replaceAll(' ', '') }"
   >
-    <div class="flex items-center px-1.5">
+    <div class="flex items-center px-1.5 py-1">
       <img
         :src="`/icons/${option.replaceAll(' ', '')}-selected.svg`"
         alt=""
@@ -17,9 +17,9 @@
   <router-link
     v-else
     :to="{ name: option.replaceAll(' ', '') }"
-    class="flex items-center pl-3 w-full"
+    class="flex items-center w-full"
   >
-    <div class="flex items-center px-1.5">
+    <div class="flex items-center px-1.5 py-1">
       <img
         :src="`/icons/${option.replaceAll(' ', '')}.svg`"
         alt=""

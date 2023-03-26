@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex w-max px-6 bg-[#F5F5F5] h-screen flex-col justify-between items-center sticky top-0"
+    class="flex w-max px-4 bg-[#F5F5F5] h-screen flex-col justify-between items-center sticky top-0"
   >
     <router-link :to="{ name: 'Dashboard' }" class="mt-10">
       <img
@@ -9,7 +9,7 @@
         data-was-processed="true"
       />
     </router-link>
-    <ol class="flex flex-col gap-1.5 font-bold text-2xl w-max">
+    <ol class="flex flex-col gap-1.5 font-bold text-2xl w-max px-2">
       <div v-for="option in menuOptions" class="w-full">
         <NavbarOption :currentRoute="currentRoute" :option="option" />
       </div>

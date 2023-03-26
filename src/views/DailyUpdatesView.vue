@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-6 mx-14 my-14 w-4/5">
+  <div class="flex flex-col m-14 gap-12 w-full">
     <PageTitle :primaryText="title" />
     <div class="flex items-end justify-end">
       <ButtonReusable text="New Update" @click="navigate" />

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-6 mx-14 my-14 w-4/5">
+  <div class="flex flex-col m-14 gap-12">
     <PageTitle primaryText="Flights" />
     <DFRDetails />
     <div class="flex items-end justify-end">
@@ -69,6 +69,6 @@ const tableData: Types.FlightTable[] = [
 ];
 
 function navigate() {
-  router.push({ name: "Flight", params: { id: "124" } });
+  router.push({ name: "NewFlight" });
 }
 </script>

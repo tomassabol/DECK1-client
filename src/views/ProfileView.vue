@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col mx-14 my-14 w-4/5">
-        <PageTitle :primaryText="title" />
-    </div>
+  <div class="flex flex-col m-14 gap-12 w-full">
+    <PageTitle :primaryText="title" />
+  </div>
 </template>
 <script setup lang="ts">
 import PageTitle from "@/components/Headers/PageTitle.vue";
