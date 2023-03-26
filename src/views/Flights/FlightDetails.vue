@@ -1,105 +1,106 @@
 <template>
-  <div class="flex flex-col gap-6 mx-14 my-14 w-4/5">
+  <div class="flex flex-col m-14 gap-12">
     <PageTitle primaryText="Flight" />
-    <div class="flex flex-col gap-6 my-8">
-      <div class="flex flex-col gap-1">
-        <Label>Flight Number</Label>
-        <Input v-model="flight.flightNumber" />
-      </div>
-      <div class="flex flex-col gap-1">
-        <Label>From</Label>
-        <div class="flex gap-16">
-          <div v-for="airport in airports">
-            <InputButton
-              v-model="flight.from"
-              :isSelected="flight.from === airport.name"
-              :value="airport.name"
-              :key="airport.id"
-              @click="flight.from = airport.name"
-            >
-              {{ airport.name }}
-            </InputButton>
-          </div>
+    <!-- From -->
+    <div class="flex flex-col gap-1">
+      <Label>From</Label>
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <div v-for="airport in airports">
+          <InputButton
+            v-model="flight.from"
+            :isSelected="flight.from === airport.name"
+            :value="airport.name"
+            :key="airport.id"
+            @click="flight.from = airport.name"
+          >
+            {{ airport.name }}
+          </InputButton>
         </div>
       </div>
-      <div class="flex flex-col gap-1">
-        <Label>Via</Label>
-        <div class="flex gap-16">
-          <!-- <InputButton v-for="site in otherSites">
+    </div>
+    <!-- From -->
+    <!-- Via -->
+    <div class="flex flex-col gap-1">
+      <Label>Via</Label>
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <div v-for="site in otherSites">
+          <InputButton
+            v-model="flight.via"
+            :isSelected="flight.via === site.name"
+            :value="site.name"
+            :key="site.id"
+            @click="flight.via = site.name"
+          >
             {{ site.name }}
-          </InputButton> -->
-          <div v-for="site in otherSites">
-            <InputButton
-              v-model="flight.via"
-              :isSelected="flight.via === site.name"
-              :value="site.name"
-              :key="site.id"
-              @click="flight.via = site.name"
-            >
-              {{ site.name }}
-            </InputButton>
-          </div>
+          </InputButton>
         </div>
+      </div>
+    </div>
+    <!-- Via -->
+    <!-- To -->
+    <div class="flex flex-col gap-1">
+      <Label>To</Label>
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <div v-for="airport in airports">
+          <InputButton
+            v-model="flight.to"
+            :isSelected="flight.to === airport.name"
+            :value="airport.name"
+            :key="airport.id"
+            @click="flight.to = airport.name"
+          >
+            {{ airport.name }}
+          </InputButton>
+        </div>
+      </div>
+    </div>
+    <!-- To -->
+    <!-- Time Input -->
+    <div class="flex flex-wrap gap-x-10 gap-y-4">
+      <TimeInput>ETD</TimeInput>
+      <TimeInput>Rotor Start</TimeInput>
+      <TimeInput>ATD</TimeInput>
+    </div>
+    <!-- Time input -->
+    <!-- Block and flight time -->
+    <div class="flex flex-wrap gap-x-10 gap-y-4">
+      <div class="flex flex-col gap-1">
+        <Label>Block Time</Label>
+        <Input />
       </div>
       <div class="flex flex-col gap-1">
-        <Label>To</Label>
-        <div class="flex gap-16">
-          <div v-for="airport in airports">
-            <InputButton
-              v-model="flight.to"
-              :isSelected="flight.to === airport.name"
-              :value="airport.name"
-              :key="airport.id"
-              @click="flight.to = airport.name"
-            >
-              {{ airport.name }}
-            </InputButton>
-          </div>
-        </div>
+        <Label>Flight Time</Label>
+        <Input />
       </div>
-      <div class="flex gap-16">
-        <TimeInput>ETD</TimeInput>
-        <TimeInput>Rotor Start</TimeInput>
-        <TimeInput>ATD</TimeInput>
-      </div>
-      <div class="flex gap-16">
-        <TimeInput>ETA</TimeInput>
-        <TimeInput>Rotor Stop</TimeInput>
-        <TimeInput>ATA</TimeInput>
-      </div>
-      <div class="flex gap-16">
-        <div class="flex flex-col gap-1">
-          <Label>Block Time</Label>
-          <Input />
-        </div>
-        <div class="flex flex-col gap-1">
-          <Label>Flight Time</Label>
-          <Input />
-        </div>
-      </div>
-      <div class="flex gap-16">
-        <div class="flex flex-col gap-1">
-          <Label>Delay</Label>
-          <Input />
-        </div>
-        <div class="flex flex-col gap-1">
-          <Label>Delay Reason</Label>
-          <Select :options="options" />
-        </div>
+    </div>
+    <!-- Block and flight time -->
+    <!-- Delay -->
+    <div class="flex flex-wrap gap-x-10 gap-y-4">
+      <div class="flex flex-col gap-1">
+        <Label>Delay (min)</Label>
+        <Input />
       </div>
       <div class="flex flex-col gap-1">
-        <Label>Delay Description</Label>
-        <TextArea></TextArea>
+        <Label>Delay Reason</Label>
+        <Select :options="options" />
       </div>
-      <div class="flex gap-16">
-        <div class="flex flex-col gap-1">
-          <Label>PAX</Label>
-          <Input />
-        </div>
-        <div class="flex flex-col gap-1">
-          <Label>PAX TAX</Label>
-          <Input />
-        </div>
+    </div>
+    <!-- Delay -->
+    <!-- Delay Description -->
+    <div class="flex flex-col gap-1">
+      <Label>Delay Description</Label>
+      <TextArea></TextArea>
+    </div>
+    <!-- Delay Description -->
+    <!-- PAX and Cargo -->
+    <div class="flex flex-wrap gap-x-10 gap-y-4">
+      <div class="flex flex-col gap-1">
+        <Label>PAX</Label>
+        <Input />
+      </div>
+      <div class="flex flex-col gap-1">
+        <Label>PAX TAX</Label>
+        <Input />
       </div>
       <div class="flex flex-col gap-1">
         <Label>Cargo per Person</Label>
@@ -110,7 +111,7 @@
         <Input />
       </div>
     </div>
-    <div class="flex self-end gap-4">
+    <div class="flex self-end gap-x-4">
       <BackButton @click="navigate" />
       <ButtonReusable @click="navigate" />
     </div>

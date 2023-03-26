@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-gray-100 rounded-xl shadow-md">
+  <div class="flex border border-gray-100 rounded-xl shadow-md w-full">
     <table class="w-full">
       <tr>
         <th v-for="header in tableHeaders" class="p-3">
@@ -39,10 +39,7 @@ function redirect(id: any) {
 
 const props = defineProps<{
   tableHeaders: Types.TableHeader;
-  tableData: Types.Report[] | Types.Update[] | Types.FlightTable[];
-  tableReportData?: Types.Report[];
-  tableUpdateData?: Types.Update[];
-  tableFlightData?: Types.Flight[];
+  tableData: Types.Report[] | Types.UpdateSearch[] | Types.FlightTable[];
   reports?: boolean;
   updates?: boolean;
   flights?: boolean;

@@ -4,9 +4,9 @@
       {{ label }}
     </label>
     <button
-      class="border-2 border-gray-100 w-64 h-12 rounded-md text-lg"
+      class="border border-gray-100 w-64 h-12 rounded-md text-lg bg-white shadow-sm"
       :class="{
-        'border-[#A3A0FB]': isSelected,
+        'border-violet-300 border-2': isSelected,
       }"
     >
       <slot></slot>
