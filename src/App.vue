@@ -1,8 +1,8 @@
 <template>
-    <div class="flex">
-        <Navbar />
-        <RouterView></RouterView>
-    </div>
+  <div class="flex">
+    <Navbar />
+    <RouterView></RouterView>
+  </div>
 </template>
 
 <script setup lang="ts">
