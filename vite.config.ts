@@ -5,17 +5,18 @@ import mkcert from "vite-plugin-mkcert";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [vue(), mkcert()],
-    resolve: {
-        alias: [
-            {
-                find: "@",
-                replacement: fileURLToPath(new URL("./src", import.meta.url)),
-            },
-        ],
-    },
-    server: {
-        port: 5173,
-        https: true,
-    },
+  plugins: [vue(), mkcert()],
+  resolve: {
+    alias: [
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    ],
+  },
+  server: {
+    port: 5173,
+    // temporarily disable https till i get https for the api
+    https: false,
+  },
 });

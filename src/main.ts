@@ -14,7 +14,7 @@ import { DefaultApolloClient } from "@vue/apollo-composable";
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: "http://localhost:4000/graphql",
+  uri: "http://deck1.sk:4000/graphql",
 });
 
 // Cache implementation
@@ -34,4 +34,3 @@ const app = createApp({
 });
 
 app.use(createPinia()).use(router).mount("#app");
-// createApp(App).use(createPinia()).use(router).use(VueApollo).mount("#app");
