@@ -18,13 +18,18 @@ namespace Types {
     H = "Other",
   }
   export interface Update {
-    id: string;
-    date: string;
-    flight: boolean;
-    reason: string;
-    maintenance: boolean;
+    id: number;
+    flight: Flight;
+    date: Date;
+    wasFlight: boolean;
+    delayReason: string;
+    delayReasonDesc: string;
+    maintenace: boolean;
     plannedMaintenance: boolean;
     unplannedMaintenance: boolean;
+    otherMaintenance: boolean;
+    maintenanceDesc: string;
     baseAndEquipment: boolean;
+    note: string;
   }
 }
