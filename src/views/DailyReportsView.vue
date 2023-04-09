@@ -17,7 +17,7 @@
         <tr
           v-for="dailyReport in dailyReports"
           @click="redirect(dailyReport.id)"
-          class="flex-auto bg-gray-50 hover:cursor-pointer text-center border-t border-slate-150 h-11"
+          class="flex-auto bg-gray-50 hover:cursor-pointer text-center border-t border-slate-150 h-12"
         >
           <td>{{ dailyReport.id }}</td>
           <td>{{ dailyReport.helicopter.model }}</td>

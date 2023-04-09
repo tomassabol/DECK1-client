@@ -4,7 +4,14 @@
       name=""
       id=""
       class="border-2 border-gray-100 rounded-md text-lg w-96"
+      :value="value"
+      :disabled="isDisabled"
     ></textarea>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  value: string;
+  isDisabled?: boolean;
+}>();
+</script>

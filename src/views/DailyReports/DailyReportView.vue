@@ -22,16 +22,16 @@
           <td>{{ flight.flightNumber }}</td>
           <td>{{ flight.from.name }}</td>
           <td>{{ flight.to.name }}</td>
-          <td>{{ moment(flight.etd).format("MMMM Do YYYY") }}</td>
-          <td>{{ moment(flight.atd).format("MMMM Do YYYY") }}</td>
-          <td>{{ moment(flight.eta).format("MMMM Do YYYY") }}</td>
-          <td>{{ moment(flight.ata).format("MMMM Do YYYY") }}</td>
+          <td>{{ moment(flight.etd).format("hh:mm a") }}</td>
+          <td>{{ moment(flight.atd).format("hh:mm a") }}</td>
+          <td>{{ moment(flight.eta).format("hh:mm a") }}</td>
+          <td>{{ moment(flight.ata).format("hh:mm a") }}</td>
           <td>
             <div
               v-if="flight.delay"
               class="bg-red-100 text-red-700 py-1 rounded-md"
             >
-              <span>{{ flight.delay }}</span>
+              <span>DELAYED</span>
             </div>
             <div v-else class="bg-green-100 text-green-700 py-1 rounded-md">
               <span>ON TIME</span>

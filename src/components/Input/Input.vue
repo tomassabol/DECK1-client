@@ -1,9 +1,16 @@
 <template>
-    <div class="flex flex-col gap-1">
-        <input
-            type="text"
-            class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
-        />
-    </div>
+  <div class="flex flex-col gap-1">
+    <input
+      :value="value"
+      type="text"
+      class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
+      :disabled="isDisabled"
+    />
+  </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  value: string;
+  isDisabled?: boolean;
+}>();
+</script>

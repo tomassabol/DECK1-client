@@ -8,6 +8,7 @@
       :class="{
         'border-violet-300 border-2': isSelected,
       }"
+      :disabled="isDisabled"
     >
       <slot></slot>
     </button>
@@ -17,5 +18,6 @@
 defineProps<{
   label?: string;
   isSelected?: boolean;
+  isDisabled?: boolean;
 }>();
 </script>
