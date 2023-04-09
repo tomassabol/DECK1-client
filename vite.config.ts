@@ -17,6 +17,6 @@ export default defineConfig({
   server: {
     port: 5173,
     // temporarily disable https till i get https for the api
-    https: false,
+    https: true,
   },
 });

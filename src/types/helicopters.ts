@@ -1,7 +1,7 @@
 namespace Types {
   export interface Helicopter {
-    id: string;
+    id: number;
     model: string;
-    registration: string;
+    reg: string;
   }
 }

@@ -1,6 +1,10 @@
 namespace Types {
   export interface Pilot {
-    id: string;
+    id: number;
+    name: string;
+  }
+  export interface HoistOperator {
+    id: number;
     name: string;
   }
 }

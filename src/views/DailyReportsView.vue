@@ -10,19 +10,35 @@
     </div>
     <Table
       :tableHeaders="tableHeaders"
-      :tableData="tableData"
+      :tableData="dailyReports"
       :reports="true"
-    />
+    >
+      <template #tableData>
+        <tr
+          v-for="dailyReport in dailyReports"
+          @click="redirect(dailyReport.id)"
+          class="flex-auto bg-gray-50 hover:cursor-pointer text-center border-t border-slate-150 h-11"
+        >
+          <td>{{ dailyReport.id }}</td>
+          <td>{{ dailyReport.helicopter.model }}</td>
+          <td>{{ dailyReport.helicopter.reg }}</td>
+          <td>{{ moment(dailyReport.date).format("MMMM Do YYYY") }}</td>
+          <td>{{ dailyReport.pilot.name }}</td>
+          <td>{{ dailyReport.hoistOperator.name }}</td>
+        </tr>
+      </template>
+    </Table>
   </div>
 </template>
 <script setup lang="ts">
-import PageTitle from "@/components/Headers/PageTitle.vue";
 import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
+import PageTitle from "@/components/Headers/PageTitle.vue";
 import Table from "@/components/Tables/TableReusable.vue";
-import { useRouter } from "vue-router";
 import { useQuery } from "@vue/apollo-composable";
 import gql from "graphql-tag";
-import { computed, ref, watch } from "vue";
+import moment from "moment";
+import { Ref, computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
@@ -37,12 +53,9 @@ const tableHeaders: Types.TableHeader = {
   date: "Date",
   pilot: "Pilot",
   hoistOperator: "Hoist Operator",
-  dailyUpdate: "Daily Update",
 };
-const tableData: Types.Report[] = [];
 
-// graphql query
-const ALL_REPORTS_QUERY = gql`
+const { result } = useQuery(gql`
   query {
     dailyReports {
       id
@@ -59,16 +72,15 @@ const ALL_REPORTS_QUERY = gql`
       }
     }
   }
-`;
-
-const { result } = useQuery(ALL_REPORTS_QUERY);
-const dailyReports = computed(() => result?.value?.dailyReports ?? []);
-
-watch(dailyReports, () => {
-  console.log(dailyReports.value);
-});
+`);
+const dailyReports: Ref<Types.Report[]> = computed(
+  () => result?.value?.dailyReports ?? []
+);
 
 function navigate() {
   router.push({ name: "NewDailyReport" });
+}
+function redirect(id: number) {
+  router.push({ name: "DailyReport", params: { id: id } });
 }
 </script>

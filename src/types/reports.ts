@@ -1,11 +1,9 @@
 namespace Types {
   export interface Report {
-    id: string;
-    acModel: string;
-    acRegistration: string;
+    id: number;
     date: Date;
-    pilot: string;
-    hoistOperator: string;
-    dailyUpdate: boolean;
+    helicopter: Helicopter;
+    pilot: Pilot;
+    hoistOperator: HoistOperator;
   }
 }
