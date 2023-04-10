@@ -110,7 +110,7 @@
       <ToggleSwitch
         :modelValue="flight.delay"
         class="mt-1.5"
-        v-if="flight.delay"
+        v-if="flight.delay != null"
       />
     </div>
 

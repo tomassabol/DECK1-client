@@ -6,4 +6,10 @@ namespace Types {
     pilot: Pilot;
     hoistOperator: HoistOperator;
   }
+
+  export interface CreateReport {
+    helicopter: Helicopter | null;
+    pilot: Pilot | null;
+    hoistOperator: HoistOperator | null;
+  }
 }
