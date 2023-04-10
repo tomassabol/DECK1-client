@@ -15,7 +15,7 @@
         </div>
         <div class="flex gap-4">
           <h3 class="font-medium">Date</h3>
-          <span>{{ moment(dailyReport.date).format("MMMM Do YYYY") }}</span>
+          <span>{{ dayjs(dailyReport.date).format("MMMM Do YYYY") }}</span>
         </div>
       </div>
       <div>
@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import moment from "moment";
+import dayjs from "dayjs";
 const props = defineProps<{
   dailyReport: Types.Report;
 }>();

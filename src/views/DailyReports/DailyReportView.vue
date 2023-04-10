@@ -8,7 +8,11 @@
       </PageTitle>
       <DFRDetails :dailyReport="dailyReport" v-if="dailyReport.id" />
       <div class="flex items-end justify-end">
-        <ButtonReusable text="New Flight" @click="navigate" />
+        <ButtonReusable
+          :loading="isLoading"
+          text="New Flight"
+          @click="navigate"
+        />
       </div>
     </div>
     <Table :tableHeaders="tableHeaders">
@@ -22,10 +26,10 @@
           <td>{{ flight.flightNumber }}</td>
           <td>{{ flight.from.name }}</td>
           <td>{{ flight.to.name }}</td>
-          <td>{{ moment(flight.etd).format("hh:mm a") }}</td>
-          <td>{{ moment(flight.atd).format("hh:mm a") }}</td>
-          <td>{{ moment(flight.eta).format("hh:mm a") }}</td>
-          <td>{{ moment(flight.ata).format("hh:mm a") }}</td>
+          <td>{{ dayjs(flight.etd).format("HH:mm") }}</td>
+          <td>{{ dayjs(flight.atd).format("HH:mm") }}</td>
+          <td>{{ dayjs(flight.eta).format("HH:mm") }}</td>
+          <td>{{ dayjs(flight.ata).format("HH:mm") }}</td>
           <td>
             <div
               v-if="flight.delay"
@@ -41,16 +45,9 @@
         </tr>
       </template>
     </Table>
-    <div class="flex items-end justify-end">
-      <ButtonReusable
-        text="Create Daily Update"
-        :warningBtn="true"
-        class="mt-4"
-        @click="newDailyUpdate"
-      />
-    </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import PageTitle from "@/components/Headers/PageTitle.vue";
 import DFRDetails from "@/components/DFR/DFRDetails.vue";
@@ -60,12 +57,14 @@ import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
 import { useQuery } from "@vue/apollo-composable";
 import gql from "graphql-tag";
-import moment from "moment";
-import { Ref, computed, watch } from "vue";
+import dayjs from "dayjs";
+import { Ref, computed, ref, watch } from "vue";
 
 const router = useRouter();
 const route = useRoute();
 const id = route.params.id;
+
+const isLoading = ref(false);
 
 const tableHeaders: Types.TableHeader = {
   id: "Flight Number",
@@ -127,12 +126,10 @@ watch(dailyReport, () => {
 });
 
 function navigate() {
+  isLoading.value = true;
   router.push({ name: "NewFlight" });
 }
 function redirect(id: number) {
   router.push({ name: "Flight", params: { id } });
-}
-function newDailyUpdate() {
-  router.push({ name: "NewDailyUpdate" });
 }
 </script>

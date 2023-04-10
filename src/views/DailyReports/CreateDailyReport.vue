@@ -5,7 +5,7 @@
     <div class="flex flex-wrap gap-x-10 gap-y-4">
       <div class="flex flex-col gap-1">
         <Label>Flight Number</Label>
-        <Input />
+        <Input :value="''" />
       </div>
     </div>
     <!-- Flight Number -->
@@ -34,12 +34,12 @@
         <div v-for="helicopter in helicopters">
           <InputButton
             v-model="DFR.acRegistration"
-            :isSelected="DFR.acRegistration === helicopter.registration"
-            :value="helicopter.registration"
+            :isSelected="DFR.acRegistration === helicopter.reg"
+            :value="helicopter.reg"
             :key="helicopter.id"
-            @click="DFR.acRegistration = helicopter.registration"
+            @click="DFR.acRegistration = helicopter.reg"
           >
-            {{ helicopter.registration }}
+            {{ helicopter.reg }}
           </InputButton>
         </div>
       </div>
@@ -102,7 +102,10 @@ import Label from "@/components/Headers/Label.vue";
 import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 import BackButton from "@/components/Buttons/BackButton.vue";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { Ref, ref, watch } from "vue";
+import { useQuery } from "@vue/apollo-composable";
+import gql from "graphql-tag";
+import { computed } from "@vue/reactivity";
 
 const router = useRouter();
 
@@ -116,38 +119,22 @@ const DFR = ref({
   dailyUpdate: false,
 });
 
-const helicopters: Types.Helicopter[] = [
-  {
-    id: "1",
-    model: "Bell 206",
-    registration: "N206",
-  },
-  {
-    id: "2",
-    model: "Bell 207",
-    registration: "N207",
-  },
-  {
-    id: "3",
-    model: "Bell 208",
-    registration: "N208",
-  },
-];
+const { result } = useQuery(gql`
+  query {
+    helicopters {
+      id
+      model
+      reg
+    }
+  }
+`);
+const helicopters: Ref<Types.Helicopter[]> = computed(
+  () => result.value?.helicopters ?? []
+);
 
-const pilots: Types.Pilot[] = [
-  {
-    id: "1",
-    name: "Pilot 1",
-  },
-  {
-    id: "2",
-    name: "Pilot 2",
-  },
-  {
-    id: "3",
-    name: "Pilot 3",
-  },
-];
+watch(helicopters, () => {
+  console.log(helicopters.value);
+});
 
 function navigate() {
   router.push({ name: "DailyReports" });

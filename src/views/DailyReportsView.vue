@@ -22,7 +22,7 @@
           <td>{{ dailyReport.id }}</td>
           <td>{{ dailyReport.helicopter.model }}</td>
           <td>{{ dailyReport.helicopter.reg }}</td>
-          <td>{{ moment(dailyReport.date).format("MMMM Do YYYY") }}</td>
+          <td>{{ dayjs(dailyReport.date).format("DD.MM.YYYY") }}</td>
           <td>{{ dailyReport.pilot.name }}</td>
           <td>{{ dailyReport.hoistOperator.name }}</td>
         </tr>
@@ -36,7 +36,7 @@ import PageTitle from "@/components/Headers/PageTitle.vue";
 import Table from "@/components/Tables/TableReusable.vue";
 import { useQuery } from "@vue/apollo-composable";
 import gql from "graphql-tag";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Ref, computed, ref } from "vue";
 import { useRouter } from "vue-router";
 

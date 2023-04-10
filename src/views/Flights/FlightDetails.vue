@@ -58,28 +58,28 @@
     <!-- To -->
     <!-- Time Input -->
     <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <TimeInput :value="moment(flight.etd).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(flight.etd).format('HH:mm')" :isDisabled="true">
         ETD
       </TimeInput>
       <TimeInput
-        :value="moment(flight.rotorStart).format('HH:mm')"
+        :value="dayjs(flight.rotorStart).format('HH:mm')"
         :isDisabled="true"
         >Rotor Start
       </TimeInput>
-      <TimeInput :value="moment(flight.atd).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(flight.atd).format('HH:mm')" :isDisabled="true">
         ATD
       </TimeInput>
     </div>
     <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <TimeInput :value="moment(flight.atd).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(flight.atd).format('HH:mm')" :isDisabled="true">
         ATD
       </TimeInput>
       <TimeInput
-        :value="moment(flight.rotorStop).format('HH:mm')"
+        :value="dayjs(flight.rotorStop).format('HH:mm')"
         :isDisabled="true"
         >Rotor Stop
       </TimeInput>
-      <TimeInput :value="moment(flight.ata).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(flight.ata).format('HH:mm')" :isDisabled="true">
         ATA
       </TimeInput>
     </div>
@@ -209,7 +209,7 @@ import { Ref } from "vue";
 import gql from "graphql-tag";
 import { useQuery } from "@vue/apollo-composable";
 import { computed } from "@vue/reactivity";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const router = useRouter();
 const route = useRoute();
