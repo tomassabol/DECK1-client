@@ -5,11 +5,11 @@
     <div class="flex flex-col gap-1">
       <Label>From</Label>
       <div class="flex flex-wrap gap-x-10 gap-y-4">
-        <div v-for="heliport in heliports" v-if="heliports">
+        <div v-for="heliport in heliports" v-if="heliports && from">
           <InputButton
             v-if="flight && heliports"
-            v-model="flight.from"
-            :isSelected="flight.from.name === heliport.name"
+            v-model="from"
+            :isSelected="from.name === heliport.name"
             :value="heliport.name"
             :key="heliport.id"
             :isDisabled="true"
@@ -26,9 +26,9 @@
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div v-for="site in sites">
           <InputButton
-            v-model="flight.via"
-            :isSelected="flight.via.name === site.name"
+            v-model="via"
             :value="site.name"
+            :isSelected="via[0].name === site.name"
             :key="site.id"
             :isDisabled="true"
           >
@@ -42,11 +42,11 @@
     <div class="flex flex-col gap-1">
       <Label>To</Label>
       <div class="flex flex-wrap gap-x-10 gap-y-4">
-        <div v-for="heliport in heliports">
+        <div v-for="heliport in heliports" v-if="to">
           <InputButton
-            v-model="flight.to"
-            :isSelected="flight.to.name === heliport.name"
+            v-model="to"
             :value="heliport.name"
+            :isSelected="to.name === heliport.name"
             :key="heliport.id"
             :isDisabled="true"
           >
@@ -58,28 +58,24 @@
     <!-- To -->
     <!-- Time Input -->
     <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <TimeInput :value="dayjs(flight.etd).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(etd).format('HH:mm')" :isDisabled="true">
         ETD
       </TimeInput>
-      <TimeInput
-        :value="dayjs(flight.rotorStart).format('HH:mm')"
-        :isDisabled="true"
+      <TimeInput :value="dayjs(rotorStart).format('HH:mm')" :isDisabled="true"
         >Rotor Start
       </TimeInput>
-      <TimeInput :value="dayjs(flight.atd).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(atd).format('HH:mm')" :isDisabled="true">
         ATD
       </TimeInput>
     </div>
     <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <TimeInput :value="dayjs(flight.atd).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(atd).format('HH:mm')" :isDisabled="true">
         ATD
       </TimeInput>
-      <TimeInput
-        :value="dayjs(flight.rotorStop).format('HH:mm')"
-        :isDisabled="true"
+      <TimeInput :value="dayjs(rotorStop).format('HH:mm')" :isDisabled="true"
         >Rotor Stop
       </TimeInput>
-      <TimeInput :value="dayjs(flight.ata).format('HH:mm')" :isDisabled="true">
+      <TimeInput :value="dayjs(ata).format('HH:mm')" :isDisabled="true">
         ATA
       </TimeInput>
     </div>
@@ -206,66 +202,65 @@ import BackButton from "@/components/Buttons/BackButton.vue";
 import ToggleSwitch from "@/components/Input/ToggleSwitch.vue";
 import { useRoute, useRouter } from "vue-router";
 import { Ref } from "vue";
-import gql from "graphql-tag";
-import { useQuery } from "@vue/apollo-composable";
-import { computed } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";
 import dayjs from "dayjs";
+import FlightService from "@/services/FlightService";
 
 const router = useRouter();
 const route = useRoute();
 
 const id = route.params.id;
 
-const { result } = useQuery(gql`
-query {
-  sites {
-    id
-    name
-  }
-  heliports {
-    id
-    name
-  }
-  flight(id: ${id}) {
-    ata
-    atd
-    blockTime
-    cargoPP
-    delay
-    delayCode
-    delayDesc
-    delayMin
-    eta
-    etd
-    flightNumber
-    flightTime
-    hoistCycles
-    id
-    notes
-    pax
-    paxTax
-    rotorStart
-    rotorStop
-    to {
-      name
-      id
-    }
-    via {
-      id
-      name
-    }
-    from {
-      id
-      name
-    }
-  }
-}`);
+const sites: Ref<Types.Site[]> = ref([]);
+const heliports: Ref<Types.Heliport[]> = ref([]);
+const flight = ref({
+  id: 0,
+  flightNumber: "",
+  blockTime: 0,
+  flightTime: 0,
+  delay: false,
+  delayMin: 0,
+  delayCode: "",
+  delayDesc: "",
+  pax: 0,
+  paxTax: 0,
+  cargoPP: 0,
+  hoistCycles: 0,
+  notes: "",
+  dailyReport: null,
+  dailyUpdate: null,
+});
+const from: Ref<Types.Heliport> = ref({
+  id: 0,
+  name: "",
+});
+const via: Ref<Types.Site[]> = ref([]);
+const to: Ref<Types.Heliport> = ref({
+  id: 0,
+  name: "",
+});
+const etd: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
+const rotorStart: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
+const atd: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
+const eta: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
+const rotorStop: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
+const ata: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
 
-const sites: Ref<Types.Site[]> = computed(() => result?.value?.sites ?? []);
-const heliports: Ref<Types.Heliport[]> = computed(
-  () => result?.value?.heliports ?? []
-);
-const flight: Ref<Types.Flight> = computed(() => result?.value?.flight ?? {});
+FlightService.getFlight(id.toString()).then((res) => {
+  flight.value = res.data.data;
+  sites.value = res.data.data.sites;
+  heliports.value = res.data.data.heliports;
+  from.value = res.data.data.flight.from;
+  to.value = res.data.data.flight.to;
+  via.value = res.data.data.flight.via;
+  etd.value = res.data.data.flight.etd;
+  rotorStart.value = res.data.data.flight.rotorStart;
+  atd.value = res.data.data.flight.atd;
+  eta.value = res.data.data.flight.eta;
+  rotorStop.value = res.data.data.flight.rotorStop;
+  ata.value = res.data.data.flight.ata;
+  console.log(res);
+});
 
 function navigate() {
   router.push({ name: "DailyReports" });

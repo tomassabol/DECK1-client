@@ -18,7 +18,7 @@
     <Table :tableHeaders="tableHeaders">
       <template #tableData>
         <tr
-          v-if="flights"
+          v-if="flights.length > 0"
           v-for="flight in flights"
           @click="redirect(flight.id)"
           class="flex-auto bg-gray-50 hover:cursor-pointer text-center border-t border-slate-150 h-12"
@@ -43,7 +43,14 @@
           </td>
           <td>{{ flight.delayCode }}</td>
         </tr>
-      </template>
+        <tbody v-else>
+          <tr
+            class="flex-auto bg-gray-50 text-center border-t border-slate-150 h-12"
+          >
+            <td colspan="9">No flights found</td>
+          </tr>
+        </tbody></template
+      >
     </Table>
   </div>
 </template>
@@ -55,10 +62,9 @@ import ButtonReusable from "@/components/Buttons/ButtonReusable.vue";
 import Table from "@/components/Tables/TableReusable.vue";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
-import { useQuery } from "@vue/apollo-composable";
-import gql from "graphql-tag";
 import dayjs from "dayjs";
-import { Ref, computed, ref, watch } from "vue";
+import { Ref, ref } from "vue";
+import ReportService from "@/services/ReportService";
 
 const router = useRouter();
 const route = useRoute();
@@ -78,51 +84,19 @@ const tableHeaders: Types.TableHeader = {
   Code: "Code",
 };
 
-// TODO: Add a query for flights per specific DFR
-const { result } = useQuery(gql`
-  query MyQuery {
-    dailyReport(id: ${id}) {
-      date
-      helicopter {
-        model
-        reg
-      }
-      hoistOperator {
-        name
-      }
-      id
-      pilot {
-        name
-      }
-    }
-    flights {
-      id
-      flightNumber
-      from {
-        name
-      }
-      to {
-        name
-      }
-      etd
-      atd
-      ata
-      eta
-      delay
-      delayCode
-    }
-  }
-`);
-const dailyReport: Ref<Types.Report> = computed(
-  () => result?.value?.dailyReport ?? []
-);
-const flights: Ref<Types.Flight[]> = computed(
-  () => result?.value?.flights ?? []
-);
+const dailyReport: Ref<Types.Report> = ref({
+  id: 0,
+  date: null,
+  helicopter: null,
+  pilot: null,
+  hoistOperator: null,
+});
+const flights: Ref<Types.Flight[]> = ref([]);
 
-watch(dailyReport, () => {
-  console.log(dailyReport.value);
-  console.log(flights.value);
+ReportService.getReport(id.toString()).then((res) => {
+  console.log(res);
+  dailyReport.value = res.data.data.dailyReport;
+  flights.value = res.data.data.flightWhereDailyReportId;
 });
 
 function navigate() {

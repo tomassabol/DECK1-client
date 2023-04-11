@@ -16,7 +16,7 @@ namespace Types {
     id: number;
     flightNumber: string;
     from: Heliport;
-    via: Site;
+    via: Site[];
     to: Heliport;
     etd: Date;
     rotorStart: Date;

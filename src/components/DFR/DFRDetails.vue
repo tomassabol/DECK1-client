@@ -5,27 +5,39 @@
       <div>
         <div class="flex gap-4">
           <h3 class="font-medium">A/C Model</h3>
-          <span>{{
-            dailyReport.helicopter.model ? dailyReport.helicopter.model : "N/A"
-          }}</span>
+          <span v-if="dailyReport.helicopter">
+            {{ dailyReport.helicopter.model }}
+          </span>
+          <span v-else>N/A</span>
         </div>
         <div class="flex gap-4">
           <h3 class="font-medium">A/C Reg.</h3>
-          <span>{{ dailyReport.helicopter.reg }}</span>
+          <span v-if="dailyReport.helicopter">
+            {{ dailyReport.helicopter.reg }}
+          </span>
+          <span v-else>N/A</span>
         </div>
         <div class="flex gap-4">
           <h3 class="font-medium">Date</h3>
-          <span>{{ dayjs(dailyReport.date).format("MMMM Do YYYY") }}</span>
+          <span v-if="dailyReport.date">
+            {{ dayjs(dailyReport.date).format("DD.MM.YYYY") }}
+          </span>
         </div>
       </div>
       <div>
         <div class="flex gap-4">
           <h3 class="font-medium">Pilot:</h3>
-          <span>{{ dailyReport.pilot.name }}</span>
+          <span v-if="dailyReport.pilot">
+            {{ dailyReport.pilot.name }}
+          </span>
+          <span v-else>N/A</span>
         </div>
         <div class="flex gap-4">
           <h3 class="font-medium">Hoist Operator:</h3>
-          <span>{{ dailyReport.hoistOperator.name }}</span>
+          <span v-if="dailyReport.hoistOperator">
+            {{ dailyReport.hoistOperator.name }}
+          </span>
+          <span v-else>N/A</span>
         </div>
       </div>
     </div>

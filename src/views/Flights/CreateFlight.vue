@@ -2,7 +2,7 @@
   <div class="flex flex-col m-14 gap-12 w-full">
     <PageTitle primaryText="Flight" />
     <!-- From -->
-    <div class="flex flex-col gap-1">
+    <!-- <div class="flex flex-col gap-1">
       <Label>From</Label>
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div v-for="airport in airports">
@@ -17,10 +17,10 @@
           </InputButton>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- From -->
     <!-- Via -->
-    <div class="flex flex-col gap-1">
+    <!-- <div class="flex flex-col gap-1">
       <Label>Via</Label>
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div v-for="site in otherSites">
@@ -35,10 +35,10 @@
           </InputButton>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Via -->
     <!-- To -->
-    <div class="flex flex-col gap-1">
+    <!-- <div class="flex flex-col gap-1">
       <Label>To</Label>
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div v-for="airport in airports">
@@ -53,17 +53,17 @@
           </InputButton>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- To -->
     <!-- Time Input -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
+    <!-- <div class="flex flex-wrap gap-x-10 gap-y-4">
       <TimeInput>ETD</TimeInput>
       <TimeInput>Rotor Start</TimeInput>
       <TimeInput>ATD</TimeInput>
-    </div>
+    </div> -->
     <!-- Time input -->
     <!-- Block and flight time -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
+    <!-- <div class="flex flex-wrap gap-x-10 gap-y-4">
       <div class="flex flex-col gap-1">
         <Label>Block Time</Label>
         <Input />
@@ -72,10 +72,10 @@
         <Label>Flight Time</Label>
         <Input />
       </div>
-    </div>
+    </div> -->
     <!-- Block and flight time -->
     <!-- Delay -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
+    <!-- <div class="flex flex-wrap gap-x-10 gap-y-4">
       <div class="flex flex-col gap-1">
         <Label>Delay (min)</Label>
         <Input />
@@ -84,16 +84,16 @@
         <Label>Delay Reason</Label>
         <Select :options="options" />
       </div>
-    </div>
+    </div> -->
     <!-- Delay -->
     <!-- Delay Description -->
-    <div class="flex flex-col gap-1">
+    <!-- <div class="flex flex-col gap-1">
       <Label>Delay Description</Label>
       <TextArea></TextArea>
-    </div>
+    </div> -->
     <!-- Delay Description -->
     <!-- PAX and Cargo -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
+    <!-- <div class="flex flex-wrap gap-x-10 gap-y-4">
       <div class="flex flex-col gap-1">
         <Label>PAX</Label>
         <Input />
@@ -110,7 +110,7 @@
         <Label>Hoist Cycles</Label>
         <Input />
       </div>
-    </div>
+    </div> -->
     <div class="flex self-end gap-x-4">
       <BackButton @click="navigate" />
       <ButtonReusable @click="navigate" />
@@ -131,58 +131,6 @@ import { useRouter } from "vue-router";
 import { Ref, ref } from "vue";
 
 const router = useRouter();
-
-const airports: Types.Site[] = [
-  {
-    id: "1",
-    name: "ESB",
-  },
-  {
-    id: "2",
-    name: "CPH",
-  },
-  {
-    id: "3",
-    name: "AAL",
-  },
-];
-const otherSites: Types.OtherSite[] = [
-  {
-    id: "1",
-    name: "B06",
-  },
-  {
-    id: "2",
-    name: "A32",
-  },
-  {
-    id: "3",
-    name: "B01",
-  },
-];
-const options: String[] = ["Weather", "Technical", "Other"];
-
-const flight: Ref<Types.Flight> = ref({
-  flightNumber: "",
-  from: "",
-  via: "",
-  to: "",
-  etd: "",
-  rotorStart: "",
-  atd: "",
-  eta: "",
-  rotorStop: "",
-  ata: "",
-  blockTime: "",
-  flightTime: "",
-  delay: false,
-  delayReason: "",
-  delayDescription: "",
-  pax: 0,
-  paxTax: 0,
-  cargoPerPerson: 0,
-  hoistCycles: 0,
-});
 
 function navigate() {
   router.push({ name: "DailyReports" });
