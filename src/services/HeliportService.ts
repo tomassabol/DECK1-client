@@ -19,4 +19,16 @@ export default {
     });
     return promise;
   },
+  createHeliport: async (name: string) => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        mutation {
+          createHeliport(data: { name: "${name}" }) {
+            id
+          }
+        }
+      `,
+    });
+    return promise;
+  },
 };

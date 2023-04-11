@@ -19,4 +19,16 @@ export default {
     });
     return promise;
   },
+  createSite: async (name: string) => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        mutation {
+          createSite(data: { name: "${name}" }) {
+            id
+          }
+        }
+      `,
+    });
+    return promise;
+  },
 };
