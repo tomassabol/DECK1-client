@@ -35,7 +35,7 @@
         @click.prevent="isCreate = !isCreate"
       />
     </div>
-    <div class="flex flex-col gap-3">
+    <template class="flex flex-col gap-3" v-if="isCreate">
       <div class="flex flex-col gap-3" v-if="activeTab === 'sites' && isCreate">
         <!-- <div v-if="isCreate"> -->
         <label class="font-medium text-xl">Enter Site Name</label>
@@ -44,10 +44,18 @@
           class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
           v-model="name"
         />
-        <ButtonReusable
-          :loading="isLoading"
-          @click.prevent="createSite(name)"
-        />
+        <div class="flex gap-3">
+          <ButtonReusable
+            :loading="isLoading"
+            @click.prevent="createSite(name)"
+          />
+          <ButtonReusable
+            :loading="isLoading"
+            :text="'Cancel'"
+            :cancelBtn="true"
+            @click.prevent="isCreate = false"
+          />
+        </div>
       </div>
       <div
         class="flex flex-col gap-3"
@@ -59,10 +67,18 @@
           class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
           v-model="name"
         />
-        <ButtonReusable
-          :loading="isLoading"
-          @click.prevent="createHeliport(name)"
-        />
+        <div class="flex gap-3">
+          <ButtonReusable
+            :loading="isLoading"
+            @click.prevent="createHeliport(name)"
+          />
+          <ButtonReusable
+            :loading="isLoading"
+            :text="'Cancel'"
+            :cancelBtn="true"
+            @click.prevent="isCreate = false"
+          />
+        </div>
       </div>
       <div class="w-1/2">
         <div
@@ -84,7 +100,7 @@
           {{ errors.errors }}
         </div>
       </div>
-    </div>
+    </template>
     <Table
       :tableHeaders="tableHeaders"
       :tableData="sites"
