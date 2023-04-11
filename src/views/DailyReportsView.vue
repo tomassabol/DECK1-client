@@ -71,7 +71,6 @@ const isLoading = ref(false);
 
 const dailyReports: Ref<Types.Report[]> = ref([]);
 
-// TODO: retrieve data from api
 const tableHeaders: Types.TableHeader = {
   id: "ID",
   acModel: "A/C Model",
