@@ -84,19 +84,11 @@
     <div class="flex flex-wrap gap-x-10 gap-y-4">
       <div class="flex flex-col gap-1">
         <Label>Block Time</Label>
-        <Input
-          :value="flight.blockTime.toString()"
-          :isDisabled="true"
-          v-if="flight.blockTime"
-        />
+        <Input :value="flight.blockTime.toString()" :isDisabled="true" />
       </div>
       <div class="flex flex-col gap-1">
         <Label>Flight Time</Label>
-        <Input
-          :value="flight.flightTime.toString()"
-          :isDisabled="true"
-          v-if="flight.blockTime"
-        />
+        <Input :value="flight.flightTime.toString()" :isDisabled="true" />
       </div>
     </div>
     <!-- Block and flight time -->
@@ -116,6 +108,7 @@
         <Input
           :value="flight.delayMin ? flight.delayMin.toString() : '0'"
           :isDisabled="true"
+          v-if="flight.delayMin != undefined"
         />
       </div>
       <div class="flex flex-col gap-1">
@@ -247,7 +240,7 @@ const rotorStop: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
 const ata: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
 
 FlightService.getFlight(id.toString()).then((res) => {
-  flight.value = res.data.data;
+  flight.value = res.data.data.flight;
   sites.value = res.data.data.sites;
   heliports.value = res.data.data.heliports;
   from.value = res.data.data.flight.from;
