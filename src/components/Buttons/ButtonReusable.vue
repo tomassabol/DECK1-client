@@ -9,7 +9,7 @@
       'bg-indigo-700': loading === true || disabled === true,
       'cursor-wait': loading === true,
       'bg-red-600 hover:bg-red-700': warningBtn === true,
-      'bg-gray-300 hover:bg-gray-400 shadow-mxl': cancelBtn === true,
+      'bg-gray-300 hover:bg-gray-500 shadow-mxl': cancelBtn === true,
     }"
     class="inline-flex items-center rounded-lg border border-transparent bg-[#5150F4] px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 h-fit w-fit"
   >
