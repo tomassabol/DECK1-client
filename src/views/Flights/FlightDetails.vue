@@ -12,7 +12,6 @@
             :isSelected="from.name === heliport.name"
             :value="heliport.name"
             :key="heliport.id"
-            :isDisabled="true"
           >
             {{ heliport.name }}
           </InputButton>
