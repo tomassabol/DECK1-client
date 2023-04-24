@@ -12,16 +12,10 @@ export default {
         query {
           dailyReports {
             id
-            helicopter {
-              model
-              reg
-            }
             date
-            pilot {
-              name
-            }
-            hoistOperator {
-              name
+            flights {
+              id
+              flightNumber
             }
           }
         }

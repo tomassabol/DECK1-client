@@ -8,7 +8,7 @@
           {{ header }}
         </th>
       </tr>
-      <slot name="tableData"></slot>
+      <slot></slot>
     </table>
   </div>
 </template>

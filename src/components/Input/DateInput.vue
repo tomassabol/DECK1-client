@@ -8,6 +8,8 @@
       id="date"
       name="date"
       required
+      :disabled="disabled"
+      :value="graphqlDateFormat(value)"
       class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
     />
   </div>
@@ -15,4 +17,10 @@
 
 <script setup lang="ts">
 import Label from "@/components/Headers/Label.vue";
+import { graphqlDateFormat } from "@/utils/dateFormat";
+
+const props = defineProps<{
+  disabled?: boolean;
+  value: string | Date;
+}>();
 </script>

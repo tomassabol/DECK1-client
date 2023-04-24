@@ -7,7 +7,7 @@
       class="border border-gray-100 w-64 h-12 rounded-md text-lg bg-white shadow-sm cursor-pointer"
       :class="{
         'border-violet-300 border-2': isSelected,
-        'cursor-default': isDisabled,
+        'cursor-loading': isDisabled,
       }"
       :disabled="isDisabled"
     >

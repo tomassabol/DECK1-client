@@ -12,6 +12,7 @@
     <ol class="flex flex-col gap-1.5 font-bold text-2xl w-max px-2">
       <div v-for="option in menuOptions" class="w-full">
         <NavbarOption :currentRoute="currentRoute" :option="option" />
+        <!-- <NavbarOption v-else :currentRoute="currentRoute" :option="option" /> -->
       </div>
     </ol>
     <router-link :to="{ name: 'Dashboard' }">
@@ -24,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import { computed, ComputedRef } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import NavbarOption from "./NavbarOption.vue";
 
 import.meta.glob("../../public/images/deck1-logo.svg", {
@@ -32,9 +33,11 @@ import.meta.glob("../../public/images/deck1-logo.svg", {
 });
 
 const router = useRouter();
+const route = useRoute();
 
 const menuOptions: string[] = [
   "Dashboard",
+  "Flights",
   "Daily Reports",
   "Daily Updates",
   "Sites",
@@ -42,6 +45,7 @@ const menuOptions: string[] = [
 ];
 
 const currentRoute: ComputedRef<string> = computed(() => {
-  return router.currentRoute.value.name as string;
+  return route.name as string;
+  // return router.currentRoute.value.name as string;
 });
 </script>

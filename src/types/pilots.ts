@@ -3,8 +3,4 @@ namespace Types {
     id: number;
     name: string;
   }
-  export interface HoistOperator {
-    id: number;
-    name: string;
-  }
 }

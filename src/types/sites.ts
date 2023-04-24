@@ -1,10 +1,10 @@
 namespace Types {
   export interface Site {
-    id: string;
+    id: number;
     name: string;
   }
-  export interface OtherSite {
-    id: string;
+
+  export interface CreateSite {
     name: string;
   }
 }

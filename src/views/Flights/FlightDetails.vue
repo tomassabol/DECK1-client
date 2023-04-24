@@ -1,184 +1,178 @@
 <template>
-  <div class="flex flex-col m-14 gap-12 w-full">
-    <PageTitle primaryText="Flight" />
-    <!-- From -->
-    <div class="flex flex-col gap-1">
-      <Label>From</Label>
+  <div class="m-14 w-full">
+    <PageTitle primaryText="Flight" :secondaryText="flight?.flightNumber" />
+    <div class="flex flex-col gap-12 w-full mt-6" v-if="flight">
+      <!-- Flight number -->
       <div class="flex flex-wrap gap-x-10 gap-y-4">
-        <div v-for="heliport in heliports" v-if="heliports && from">
-          <InputButton
-            v-if="flight && heliports"
-            v-model="from"
-            :isSelected="from.name === heliport.name"
-            :value="heliport.name"
-            :key="heliport.id"
-          >
-            {{ heliport.name }}
-          </InputButton>
+        <div>
+          <Label>Site</Label>
+          <Input :value="flight.site.name" :isDisabled="true" />
+        </div>
+        <div>
+          <Label>Pilot</Label>
+          <Input :value="flight.pilot.name" :isDisabled="true" />
+        </div>
+        <div>
+          <Label>Hoist Operator</Label>
+          <Input :value="flight.hoistOperator.name" :isDisabled="true" />
         </div>
       </div>
-    </div>
-    <!-- From -->
-    <!-- Via -->
-    <div class="flex flex-col gap-1">
-      <Label>Via</Label>
+      <!-- Flight number -->
       <div class="flex flex-wrap gap-x-10 gap-y-4">
-        <div v-for="site in sites">
+        <!-- From -->
+        <div class="flex flex-col gap-1">
+          <Label>From</Label>
+          <InputButton :isSelected="true" :isDisabled="true">
+            {{ flight.from.name }}
+          </InputButton>
+        </div>
+        <!-- From -->
+        <!-- To -->
+        <div class="flex flex-col gap-1">
+          <Label>To</Label>
           <InputButton
-            v-model="via"
-            :value="site.name"
-            :isSelected="via[0].name === site.name"
-            :key="site.id"
+            v-model="flight.to"
+            :isSelected="true"
             :isDisabled="true"
           >
-            {{ site.name }}
+            {{ flight.to.name }}
           </InputButton>
         </div>
+        <!-- To -->
       </div>
-    </div>
-    <!-- Via -->
-    <!-- To -->
-    <div class="flex flex-col gap-1">
-      <Label>To</Label>
-      <div class="flex flex-wrap gap-x-10 gap-y-4">
-        <div v-for="heliport in heliports" v-if="to">
-          <InputButton
-            v-model="to"
-            :value="heliport.name"
-            :isSelected="to.name === heliport.name"
-            :key="heliport.id"
-            :isDisabled="true"
-          >
-            {{ heliport.name }}
-          </InputButton>
+      <!-- Via -->
+      <div class="flex flex-col gap-1">
+        <Label>Via</Label>
+        <div class="flex flex-wrap gap-x-10 gap-y-4">
+          <div v-for="location in flight.via">
+            <InputButton
+              :isDisabled="true"
+              :isSelected="true"
+              :key="location.id"
+            >
+              {{ location.name }}
+            </InputButton>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- To -->
-    <!-- Time Input -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <TimeInput :value="dayjs(etd).format('HH:mm')" :isDisabled="true">
-        ETD
-      </TimeInput>
-      <TimeInput :value="dayjs(rotorStart).format('HH:mm')" :isDisabled="true"
-        >Rotor Start
-      </TimeInput>
-      <TimeInput :value="dayjs(atd).format('HH:mm')" :isDisabled="true">
-        ATD
-      </TimeInput>
-    </div>
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <TimeInput :value="dayjs(atd).format('HH:mm')" :isDisabled="true">
-        ATD
-      </TimeInput>
-      <TimeInput :value="dayjs(rotorStop).format('HH:mm')" :isDisabled="true"
-        >Rotor Stop
-      </TimeInput>
-      <TimeInput :value="dayjs(ata).format('HH:mm')" :isDisabled="true">
-        ATA
-      </TimeInput>
-    </div>
-    <!-- Time input -->
-    <!-- Block and flight time -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <div class="flex flex-col gap-1">
-        <Label>Block Time</Label>
-        <Input :value="flight.blockTime.toString()" :isDisabled="true" />
+      <!-- Via -->
+      <!-- Time Input -->
+      <div>
+        <Label>Date</Label>
+        <DateInput :value="flight.date" :isDisabled="true" />
       </div>
-      <div class="flex flex-col gap-1">
-        <Label>Flight Time</Label>
-        <Input :value="flight.flightTime.toString()" :isDisabled="true" />
-      </div>
-    </div>
-    <!-- Block and flight time -->
-    <!-- Delay -->
-    <div class="flex gap-6 items-center">
-      <Label>Delay</Label>
-      <ToggleSwitch
-        :modelValue="flight.delay"
-        class="mt-1.5"
-        v-if="flight.delay != null"
-      />
-    </div>
 
-    <div class="flex flex-wrap gap-x-10 gap-y-4" v-if="flight.delay">
-      <div class="flex flex-col gap-1">
-        <Label>Delay (min)</Label>
-        <Input
-          :value="flight.delayMin ? flight.delayMin.toString() : '0'"
-          :isDisabled="true"
-          v-if="flight.delayMin != undefined"
-        />
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <TimeInput :value="timeFormat(flight.etd)" :isDisabled="true">
+          ETD
+        </TimeInput>
+        <TimeInput :value="timeFormat(flight.rotorStart)" :isDisabled="true"
+          >Rotor Start
+        </TimeInput>
+        <TimeInput :value="timeFormat(flight.etd)" :isDisabled="true">
+          ETD
+        </TimeInput>
       </div>
-      <div class="flex flex-col gap-1">
-        <Label>Delay Reason</Label>
-        <select
-          v-model="flight.delayCode"
-          disabled
-          class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg"
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <TimeInput :value="timeFormat(flight.atd)" :isDisabled="true">
+          ATD
+        </TimeInput>
+        <TimeInput :value="timeFormat(flight.rotorStop)" :isDisabled="true"
+          >Rotor Stop
+        </TimeInput>
+        <TimeInput :value="timeFormat(flight.ata)" :isDisabled="true">
+          ATA
+        </TimeInput>
+      </div>
+      <!-- Time input -->
+      <!-- Block and flight time -->
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <div class="flex flex-col gap-1">
+          <Label>Block Time</Label>
+          <Input :value="flight.blockTime.toString()" :isDisabled="true" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <Label>Flight Time</Label>
+          <Input :value="flight.flightTime.toString()" :isDisabled="true" />
+        </div>
+      </div>
+      <!-- Block and flight time -->
+      <!-- Delay -->
+      <div class="flex gap-6 items-center">
+        <Label>Delay</Label>
+        <ToggleSwitch :modelValue="flight.delay" class="mt-1.5" />
+        <span
+          v-if="flight.delay === false"
+          class="text-green-700 bg-green-50 p-2 px-3 rounded-md"
+          >on time</span
         >
-          <option value="" disabled>select a reason</option>
-          <option value="A">A - Weather</option>
-          <option value="B">B - GE Weather</option>
-          <option value="C">C - PAX Late</option>
-          <option value="D">D - Heli Crew</option>
-          <option value="E">E - Ground Stop</option>
-          <option value="F">F - Heli Technical</option>
-          <option value="G">G - GE Reason</option>
-          <option value="H">H - Others</option>
-          <option value="I">I - Flight Canceled</option>
-          <option value="J">J - Flight Aborted</option>
-        </select>
       </div>
-    </div>
-    <!-- Delay -->
-    <!-- Delay Description -->
-    <div class="flex flex-col gap-1" v-if="flight.delay">
-      <Label>Delay Description</Label>
-      <TextArea
-        v-if="flight.delay"
-        :value="flight.delayDesc ? flight.delayDesc : ''"
-        :isDisabled="true"
-      ></TextArea>
-    </div>
-    <!-- Delay Description -->
-    <!-- PAX and Cargo -->
-    <div class="flex flex-wrap gap-x-10 gap-y-4">
-      <div class="flex flex-col gap-1">
-        <Label>PAX</Label>
-        <Input
-          :value="flight.pax.toString()"
+
+      <div
+        class="flex flex-wrap gap-x-10 gap-y-4"
+        v-if="flight && flight.delay"
+      >
+        <div class="flex flex-col gap-1">
+          <Label>Delay (min)</Label>
+          <Input
+            :value="flight.delayTime ? flight.delayTime.toString() : '0'"
+            :isDisabled="true"
+          />
+        </div>
+        <div class="flex flex-col gap-1">
+          <Label>Delay Reason</Label>
+          <select
+            v-model="flight.delayCode"
+            disabled
+            class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg"
+          >
+            <option value="" disabled>select a reason</option>
+            <option value="A">A - Weather</option>
+            <option value="B">B - GE Weather</option>
+            <option value="C">C - PAX Late</option>
+            <option value="D">D - Heli Crew</option>
+            <option value="E">E - Ground Stop</option>
+            <option value="F">F - Heli Technical</option>
+            <option value="G">G - GE Reason</option>
+            <option value="H">H - Others</option>
+            <option value="I">I - Flight Canceled</option>
+            <option value="J">J - Flight Aborted</option>
+          </select>
+        </div>
+      </div>
+      <!-- Delay -->
+      <!-- Delay Description -->
+      <div class="flex flex-col gap-1" v-if="flight && flight.delay">
+        <Label>Delay Description</Label>
+        <TextArea
+          v-if="flight.delay"
+          :value="flight.delayNote ? flight.delayNote : ''"
           :isDisabled="true"
-          v-if="flight.pax"
-        />
+        ></TextArea>
       </div>
-      <div class="flex flex-col gap-1">
-        <Label>PAX TAX</Label>
-        <Input
-          :value="flight.paxTax.toString()"
-          :isDisabled="true"
-          v-if="flight.paxTax"
-        />
+      <!-- Delay Description -->
+      <!-- PAX and Cargo -->
+      <div class="flex flex-wrap gap-x-10 gap-y-4">
+        <div class="flex flex-col gap-1">
+          <Label>PAX</Label>
+          <Input :value="flight.pax.toString()" :isDisabled="true" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <Label>PAX TAX</Label>
+          <Input :value="flight.paxTax.toString()" :isDisabled="true" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <Label>Cargo per Person</Label>
+          <Input :value="flight.cargoPP.toString()" :isDisabled="true" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <Label>Hoist Cycles</Label>
+          <Input :value="flight.hoistCycles.toString()" :isDisabled="true" />
+        </div>
       </div>
-      <div class="flex flex-col gap-1">
-        <Label>Cargo per Person</Label>
-        <Input
-          :value="flight.cargoPP.toString()"
-          :isDisabled="true"
-          v-if="flight.cargoPP"
-        />
+      <div class="flex self-end gap-x-4">
+        <BackButton @click="navigate" />
       </div>
-      <div class="flex flex-col gap-1">
-        <Label>Hoist Cycles</Label>
-        <Input
-          :value="flight.hoistCycles.toString()"
-          :isDisabled="true"
-          v-if="flight.hoistCycles"
-        />
-      </div>
-    </div>
-    <div class="flex self-end gap-x-4">
-      <BackButton @click="navigate" />
     </div>
   </div>
 </template>
@@ -193,68 +187,48 @@ import TextArea from "@/components/Input/TextArea.vue";
 import BackButton from "@/components/Buttons/BackButton.vue";
 import ToggleSwitch from "@/components/Input/ToggleSwitch.vue";
 import { useRoute, useRouter } from "vue-router";
-import { Ref } from "vue";
+import { Ref, onBeforeMount } from "vue";
 import { ref } from "@vue/reactivity";
-import dayjs from "dayjs";
 import FlightService from "@/services/FlightService";
+import { graphqlDateFormat, timeFormat } from "@/utils/dateFormat";
+import DateInput from "@/components/Input/DateInput.vue";
 
 const router = useRouter();
 const route = useRoute();
 
 const id = route.params.id;
 
-const sites: Ref<Types.Site[]> = ref([]);
-const heliports: Ref<Types.Heliport[]> = ref([]);
-const flight = ref({
-  id: 0,
-  flightNumber: "",
-  blockTime: 0,
-  flightTime: 0,
-  delay: false,
-  delayMin: 0,
-  delayCode: "",
-  delayDesc: "",
-  pax: 0,
-  paxTax: 0,
-  cargoPP: 0,
-  hoistCycles: 0,
-  notes: "",
-  dailyReport: null,
-  dailyUpdate: null,
-});
-const from: Ref<Types.Heliport> = ref({
-  id: 0,
-  name: "",
-});
-const via: Ref<Types.Site[]> = ref([]);
-const to: Ref<Types.Heliport> = ref({
-  id: 0,
-  name: "",
-});
-const etd: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
-const rotorStart: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
-const atd: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
-const eta: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
-const rotorStop: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
-const ata: Ref<string> = ref(dayjs().format("YYYY-MM-DD"));
+const flight: Ref<Types.Flight | null> = ref(null);
+const heliports: Ref<Types.Location[]> = ref([]);
+const via: Ref<Types.Location[]> = ref([]);
 
-FlightService.getFlight(id.toString()).then((res) => {
-  flight.value = res.data.data.flight;
-  sites.value = res.data.data.sites;
-  heliports.value = res.data.data.heliports;
-  from.value = res.data.data.flight.from;
-  to.value = res.data.data.flight.to;
-  via.value = res.data.data.flight.via;
-  etd.value = res.data.data.flight.etd;
-  rotorStart.value = res.data.data.flight.rotorStart;
-  atd.value = res.data.data.flight.atd;
-  eta.value = res.data.data.flight.eta;
-  rotorStop.value = res.data.data.flight.rotorStop;
-  ata.value = res.data.data.flight.ata;
-  console.log(res);
+onBeforeMount(() => {
+  getFlight();
 });
+
+function getFlight() {
+  const flightId = parseInt(id as string);
+  FlightService.getFlight(flightId)
+    .then((res) => {
+      flight.value = res.data.data.flightById;
+    })
+    .finally(() => {
+      getFlightDetails(flight.value?.site.id as number);
+    });
+}
+
+function getFlightDetails(siteId: number) {
+  FlightService.getFlightDetails(siteId)
+    .then((res) => {
+      heliports.value = res.data.data.heliportsPerSite;
+      via.value = res.data.data.viaPerSite;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 function navigate() {
-  router.push({ name: "DailyReports" });
+  router.push({ name: "Flights" });
 }
 </script>

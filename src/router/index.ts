@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/DailyReports",
     name: "DailyReports",
-    component: () => import("@/views/DailyReportsView.vue"),
+    component: () => import("@/views/DailyReports/DailyReportsView.vue"),
   },
   {
     path: "/DailyReports/new",
@@ -43,11 +43,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Flights/CreateFlight.vue"),
   },
   {
-    path: "/Flights/:id",
-    name: "Flight",
-    component: () => import("@/views/Flights/FlightDetails.vue"),
-  },
-  {
     path: "/Sites",
     name: "Sites",
     component: () => import("@/views/SitesView.vue"),
@@ -56,6 +51,16 @@ const routes: Array<RouteRecordRaw> = [
     path: "/Profile",
     name: "Profile",
     component: () => import("@/views/ProfileView.vue"),
+  },
+  {
+    path: "/Flights",
+    name: "Flights",
+    component: () => import("@/views/Flights/FlightsView.vue"),
+  },
+  {
+    path: "/Flights/:id",
+    name: "FlightDetails",
+    component: () => import("@/views/Flights/FlightDetails.vue"),
   },
 ];
 

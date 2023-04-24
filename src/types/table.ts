@@ -22,5 +22,7 @@ namespace Types {
     delay?: string;
     Code?: string;
     name?: string;
+    flights?: string;
+    site?: string;
   };
 }
