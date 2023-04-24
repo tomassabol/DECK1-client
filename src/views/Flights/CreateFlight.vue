@@ -180,7 +180,7 @@ import { ref } from "@vue/reactivity";
 import dayjs from "dayjs";
 import Multiselect from "@vueform/multiselect";
 import HeliportService from "@/services/HeliportService";
-import SiteService from "@/services/SiteService";
+import SiteService from "@/services/LocationService";
 
 const router = useRouter();
 const route = useRoute();

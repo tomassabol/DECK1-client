@@ -6,25 +6,24 @@ const axiosConfig = {
 };
 
 export default {
-  getSites: async () => {
+  getLocations: async () => {
     const promise = axios.post(axiosConfig.baseURL, {
-      query: `
-        query {
-          sites {
+      query: `{
+          sites{
             id
             name
           }
-        }
-      `,
-    });
-    return promise;
-  },
-  createSite: async (name: string) => {
-    const promise = axios.post(axiosConfig.baseURL, {
-      query: `
-        mutation {
-          createSite(data: { name: "${name}" }) {
+          heliportsPerSite(siteId: 1) {
             id
+            name
+            type
+          }
+          viaPerSite(siteId: 1) {
+            id
+            name
+            lat
+            lng
+            type
           }
         }
       `,

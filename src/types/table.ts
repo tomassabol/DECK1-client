@@ -24,5 +24,8 @@ namespace Types {
     name?: string;
     flights?: string;
     site?: string;
+    type?: string;
+    lng?: string;
+    lat?: string;
   };
 }
