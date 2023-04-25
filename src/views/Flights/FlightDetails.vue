@@ -190,7 +190,7 @@ import { useRoute, useRouter } from "vue-router";
 import { Ref, onBeforeMount } from "vue";
 import { ref } from "@vue/reactivity";
 import FlightService from "@/services/FlightService";
-import { graphqlDateFormat, timeFormat } from "@/utils/dateFormat";
+import { timeFormat } from "@/utils/dateFormat";
 import DateInput from "@/components/Input/DateInput.vue";
 
 const router = useRouter();

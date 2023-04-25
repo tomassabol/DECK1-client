@@ -19,8 +19,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/DailyReports/:id",
-    name: "DailyReport",
-    component: () => import("@/views/DailyReports/DailyReportView.vue"),
+    name: "DailyReportDetails",
+    component: () => import("@/views/DailyReports/DailyReportDetails.vue"),
   },
   {
     path: "/DailyUpdates",

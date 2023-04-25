@@ -48,7 +48,7 @@ import PageTitle from "@/components/Headers/PageTitle.vue";
 import Table from "@/components/Tables/TableReusable.vue";
 import { Ref, onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
-import ReportService from "@/services/ReportService";
+import ReportService from "@/services/DailyReportService";
 import { dateFormat } from "@/utils/dateFormat";
 import TableRow from "@/components/Tables/TableRow.vue";
 import TableBody from "@/components/Tables/TableBody.vue";
@@ -85,6 +85,6 @@ function navigate() {
   router.push({ name: "NewDailyReport" });
 }
 function redirect(id: number) {
-  router.push({ name: "DailyReport", params: { id: id } });
+  router.push({ name: "DailyReportDetails", params: { id: id } });
 }
 </script>
