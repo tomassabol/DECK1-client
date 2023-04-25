@@ -13,11 +13,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/DailyReports/DailyReportsView.vue"),
   },
   {
-    path: "/DailyReports/new",
-    name: "NewDailyReport",
-    component: () => import("@/views/DailyReports/CreateDailyReport.vue"),
-  },
-  {
     path: "/DailyReports/:id",
     name: "DailyReportDetails",
     component: () => import("@/views/DailyReports/DailyReportDetails.vue"),
@@ -28,19 +23,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/DailyUpdates/DailyUpdatesView.vue"),
   },
   {
-    path: "/DailyUpdates/new",
-    name: "NewDailyUpdate",
-    component: () => import("@/views/DailyUpdates/CreateDailyUpdate.vue"),
-  },
-  {
     path: "/DailyUpdates/:id",
     name: "DailyUpdate",
     component: () => import("@/views/DailyUpdates/DailyUpdateDetails.vue"),
-  },
-  {
-    path: "/Flights/new",
-    name: "NewFlight",
-    component: () => import("@/views/Flights/CreateFlight.vue"),
   },
   {
     path: "/Sites",
