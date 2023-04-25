@@ -10,7 +10,7 @@
 </template>
 <script setup lang="ts">
 defineProps<{
-  value: string;
+  value: string | number;
   isDisabled?: boolean;
 }>();
 </script>

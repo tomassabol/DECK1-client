@@ -30,4 +30,25 @@ export default {
     });
     return promise;
   },
+
+  getLocation: async (id: number | string) => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        {
+          location(id: ${id}) {
+            id
+            name
+            lat
+            lng
+            type
+            site {
+              id
+              name
+            }
+          }
+        }
+      `,
+    });
+    return promise;
+  },
 };

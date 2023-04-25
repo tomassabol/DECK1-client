@@ -19,7 +19,7 @@
         <TableRow
           class="flex-auto bg-gray-50 text-center border-t border-slate-150 h-12"
         >
-          <TableData colspan="4">No flights found</TableData>
+          <TableData colspan="4">No daily updates found</TableData>
         </TableRow>
       </TableBody>
     </Table>

@@ -45,7 +45,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Sites",
     name: "Sites",
-    component: () => import("@/views/LocationsView.vue"),
+    component: () => import("@/views/Locations/LocationsView.vue"),
+  },
+  {
+    path: "/Locations/:id",
+    name: "LocationDetails",
+    component: () => import("@/views/Locations/LocationDetails.vue"),
+  },
+  {
+    path: "/Sites/:id",
+    name: "SiteDetails",
+    component: () => import("@/views/Locations/SiteDetails.vue"),
   },
   {
     path: "/Profile",

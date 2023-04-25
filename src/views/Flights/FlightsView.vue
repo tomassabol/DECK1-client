@@ -19,11 +19,7 @@
             :loading="isLoading.flights"
             @click.prevent="fetchFlights"
           />
-          <ButtonReusable
-            text="Reset"
-            :cancelBtn="true"
-            @click.prevent="resetFlights"
-          />
+          <BackButton text="Reset" @click.prevent="resetFlights" />
         </div>
       </PageTitle>
       <ButtonReusable text="New Flight" @click.prevent="notImplemented" />
@@ -82,6 +78,7 @@ import FlightService from "@/services/FlightService";
 import { Ref, onBeforeMount, ref } from "vue";
 import TimeFormat from "@/components/Helpers/TimeFormat.vue";
 import { graphqlDateFormat } from "@/utils/dateFormat";
+import BackButton from "@/components/Buttons/BackButton.vue";
 
 const router = useRouter();
 

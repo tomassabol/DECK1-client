@@ -3,8 +3,9 @@ namespace Types {
     id: number;
     name: string;
     lat: number;
-    long: number;
+    lng: number;
     type: string;
+    site: Site;
   }
 
   export type LocationType = "HELIPORT" | "AIRPORT" | "VIA" | "OTHER";

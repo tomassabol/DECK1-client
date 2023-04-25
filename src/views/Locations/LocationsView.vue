@@ -1,72 +1,58 @@
 <template>
-  <div class="flex flex-col m-14 w-full">
-    <div class="flex justify-between items-end">
-      <PageTitle :primaryText="'Locations'" />
-      <ButtonReusable text="New Location" @click.prevent="" />
-    </div>
-    <div class="flex justify-between w-100">
-      <div class="flex gap-2">
-        <TabButton
-          id="tab-active"
-          :selected="activeTab === 'sites'"
-          @click="activeTab = 'sites'"
-        >
-          Sites
-          <span class="opacity-50">{{ sites.length }}</span>
-        </TabButton>
-        <TabButton
-          id="tab-active"
-          :selected="activeTab === 'heliports'"
-          @click="activeTab = 'heliports'"
-        >
-          Heliports
-          <span class="opacity-50">{{ heliports.length }}</span>
-        </TabButton>
-        <TabButton
-          id="tab-active"
-          :selected="activeTab === 'other'"
-          @click="activeTab = 'other'"
-        >
-          Other
-          <span class="opacity-50">{{ via.length }}</span>
-        </TabButton>
+  <div class="m-14 w-full">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-col gap-2">
+        <PageTitle :primaryText="'Locations'" />
+        <div class="flex gap-2">
+          <TabButton
+            id="tab-active"
+            :selected="activeTab === 'sites'"
+            @click="activeTab = 'sites'"
+          >
+            Sites
+            <span class="opacity-50">{{ sites.length }}</span>
+          </TabButton>
+          <TabButton
+            id="tab-active"
+            :selected="activeTab === 'heliports'"
+            @click="activeTab = 'heliports'"
+          >
+            Heliports
+            <span class="opacity-50">{{ heliports.length }}</span>
+          </TabButton>
+          <TabButton
+            id="tab-active"
+            :selected="activeTab === 'other'"
+            @click="activeTab = 'other'"
+          >
+            Other
+            <span class="opacity-50">{{ via.length }}</span>
+          </TabButton>
+        </div>
       </div>
+      <ButtonReusable text="New Location" @click.prevent="" />
     </div>
     <div class="flex flex-col gap-12 w-full mt-4">
       <Table :tableHeaders="tableHeaders">
         <TableRow
           v-for="location in tableData"
           :key="location.id"
+          @click.prevent="navigate(location.id, location.type)"
           class="flex-auto bg-gray-50 hover:cursor-pointer text-center border-t border-slate-150 h-12"
         >
           <TableData>{{ location.id }}</TableData>
           <TableData>{{ location.name }}</TableData>
-          <TableData v-if="activeTab === 'heliports'">
-            {{
-              //@ts-expect-error
-              location.type
-            }}
+          <TableData v-if="location.type">
+            {{ location.type }}
           </TableData>
-          <TableData v-if="activeTab === 'other'">
-            {{
-              //@ts-expect-error
-              location.lng
-            }}
+          <TableData v-if="location.lng != null">
+            {{ location.lng }}
           </TableData>
-          <TableData v-if="activeTab === 'other'">
-            {{
-              //@ts-expect-error
-              location.lat
-            }}
-          </TableData>
-          <TableData v-if="activeTab === 'other'">
-            {{
-              //@ts-expect-error
-              location.type
-            }}
+          <TableData v-if="location.lat != null">
+            {{ location.lat }}
           </TableData>
         </TableRow>
-        <TableBody v-if="tableData.length === 0">
+        <TableBody v-if="tableData && tableData.length === 0">
           <TableRow
             class="flex-auto bg-gray-50 text-center border-t border-slate-150 h-12"
           >
@@ -86,9 +72,10 @@ import TableRow from "@/components/Tables/TableRow.vue";
 import TableData from "@/components/Tables/TableData.vue";
 import { Ref, onBeforeMount, ref, watch } from "vue";
 import TabButton from "@/components/Buttons/TabButton.vue";
-import HeliportService from "@/services/HeliportService";
-import router from "@/router";
 import LocationService from "@/services/LocationService";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const isLoading = ref(false);
 const isCreate = ref(false);
@@ -98,10 +85,9 @@ const errors = ref({
   errors: "",
 });
 const activeTab: Ref<"sites" | "heliports" | "other"> = ref("sites");
-
 const tableHeaders: Ref<Types.TableHeader> = ref({});
 
-const tableData: Ref<Types.Location[] | Types.Site[]> = ref([]);
+const tableData: Ref<any> = ref([]);
 const sites: Ref<Types.Site[]> = ref([]);
 const heliports: Ref<Types.Location[]> = ref([]);
 const via: Ref<Types.Location[]> = ref([]);
@@ -125,9 +111,9 @@ watch(activeTab, (newVal) => {
     tableHeaders.value = {
       id: "ID",
       name: "Name",
+      type: "Type",
       lng: "Longitude",
       lat: "Latitude",
-      type: "Type",
     };
   }
 });
@@ -153,4 +139,12 @@ function fetchData() {
       };
     });
 }
+
+const navigate = (id: number, type: string) => {
+  if (type) {
+    router.push({ name: "LocationDetails", params: { id } });
+  } else {
+    router.push({ name: "SiteDetails", params: { id } });
+  }
+};
 </script>
