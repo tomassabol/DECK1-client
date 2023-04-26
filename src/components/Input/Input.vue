@@ -6,7 +6,13 @@
       class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
       :disabled="isDisabled"
       :placeholder="placeholder"
-      v-on:input="$emit('update:modelValue', $event.target?.value)"
+      v-on:input="
+        $emit(
+          'update:modelValue',
+          //@ts-expect-error
+          $event.target?.value
+        )
+      "
     />
   </div>
 </template>
