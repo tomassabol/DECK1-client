@@ -6,15 +6,15 @@
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div>
           <Label>Site</Label>
-          <Input :value="flight.site.name" :isDisabled="true" />
+          <Input v-model="flight.site.name" :isDisabled="true" />
         </div>
         <div>
           <Label>Pilot</Label>
-          <Input :value="flight.pilot.name" :isDisabled="true" />
+          <Input v-model="flight.pilot.name" :isDisabled="true" />
         </div>
         <div>
           <Label>Hoist Operator</Label>
-          <Input :value="flight.hoistOperator.name" :isDisabled="true" />
+          <Input v-model="flight.hoistOperator.name" :isDisabled="true" />
         </div>
       </div>
       <!-- Flight number -->
@@ -89,11 +89,11 @@
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div class="flex flex-col gap-1">
           <Label>Block Time</Label>
-          <Input :value="flight.blockTime.toString()" :isDisabled="true" />
+          <Input v-model="flight.blockTime" :isDisabled="true" />
         </div>
         <div class="flex flex-col gap-1">
           <Label>Flight Time</Label>
-          <Input :value="flight.flightTime.toString()" :isDisabled="true" />
+          <Input v-model="flight.flightTime" :isDisabled="true" />
         </div>
       </div>
       <!-- Block and flight time -->
@@ -114,10 +114,7 @@
       >
         <div class="flex flex-col gap-1">
           <Label>Delay (min)</Label>
-          <Input
-            :value="flight.delayTime ? flight.delayTime.toString() : '0'"
-            :isDisabled="true"
-          />
+          <Input v-model="flight.delayTime" :isDisabled="true" />
         </div>
         <div class="flex flex-col gap-1">
           <Label>Delay Reason</Label>
@@ -155,19 +152,19 @@
       <div class="flex flex-wrap gap-x-10 gap-y-4">
         <div class="flex flex-col gap-1">
           <Label>PAX</Label>
-          <Input :value="flight.pax.toString()" :isDisabled="true" />
+          <Input v-model="flight.pax" :isDisabled="true" />
         </div>
         <div class="flex flex-col gap-1">
           <Label>PAX TAX</Label>
-          <Input :value="flight.paxTax.toString()" :isDisabled="true" />
+          <Input v-model="flight.paxTax" :isDisabled="true" />
         </div>
         <div class="flex flex-col gap-1">
           <Label>Cargo per Person</Label>
-          <Input :value="flight.cargoPP.toString()" :isDisabled="true" />
+          <Input v-model="flight.cargoPP" :isDisabled="true" />
         </div>
         <div class="flex flex-col gap-1">
           <Label>Hoist Cycles</Label>
-          <Input :value="flight.hoistCycles.toString()" :isDisabled="true" />
+          <Input v-model="flight.hoistCycles" :isDisabled="true" />
         </div>
       </div>
       <div class="flex self-end gap-x-4">
