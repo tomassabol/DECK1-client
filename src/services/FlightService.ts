@@ -130,4 +130,67 @@ export default {
     });
     return promise;
   },
+
+  createFlightDataFetch: async () => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        query {
+          sites {
+            id
+            name
+          }
+          pilots {
+            id
+            name
+          }
+          hoistOperators {
+            id
+            name
+          }
+          helicopters {
+            id
+            model
+            manufacturer
+          }
+        }`,
+    });
+    return promise;
+  },
+
+  createFlight: async (flight: Types.CreateFlight) => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        mutation {
+          createFlight(
+            data: {
+              flightNumber: "${flight.flightNumber}"
+              date: "${flight.date}"
+              helicopterId: 1
+              pilotId: ${flight.pilotId}
+              hoistOperatorId: ${flight.hoistOperatorId}
+              siteId: ${flight.siteId}
+              fromId: ${flight.fromId}
+              viaIds: [${flight.viaIds}]
+              toId: ${flight.toId}
+              etd: "${flight.etd}"
+              rotorStart: "${flight.rotorStart}"
+              eta: "${flight.eta}"
+              atd: "2023-04-27T06:01:00.000Z"
+              rotorStop: "2023-04-27T06:02:00.000Z"
+              ata: "2023-04-27T08:20:00.000Z"
+              flightTime: ${flight.flightTime}
+              blockTime: ${flight.blockTime}
+              pax: ${flight.pax}
+              paxTax: ${flight.paxTax}
+              cargoPP: ${flight.cargoPP}
+              hoistCycles: ${flight.hoistCycles}
+            }
+          ) {
+            id
+          }
+        }
+      `,
+    });
+    return promise;
+  },
 };

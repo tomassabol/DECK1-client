@@ -22,7 +22,7 @@
           <BackButton text="Reset" @click.prevent="resetFlights" />
         </div>
       </PageTitle>
-      <ButtonReusable text="New Flight" @click.prevent="notImplemented" />
+      <ButtonReusable text="New Flight" @click.prevent="newFlight" />
     </div>
     <Table :tableHeaders="tableHeaders" :tableData="flights">
       <TableRow
@@ -33,18 +33,10 @@
       >
         <TableData>{{ flight.flightNumber }}</TableData>
         <TableData>{{ flight.from.name }} </TableData>
-        <TableData>
-          {{ flight.to.name }}
-        </TableData>
-        <TableData>
-          <TimeFormat :time="flight.eta" />
-        </TableData>
-        <TableData>
-          <TimeFormat :time="flight.etd" />
-        </TableData>
-        <TableData>
-          {{ flight.site.name }}
-        </TableData>
+        <TableData>{{ flight.to.name }}</TableData>
+        <TableData><TimeFormat :time="flight.etd" /></TableData>
+        <TableData><TimeFormat :time="flight.eta" /></TableData>
+        <TableData>{{ flight.site.name }}</TableData>
         <TableData>
           <span
             v-if="flight.delay === false"
@@ -129,8 +121,8 @@ const tableHeaders: Types.TableHeader = {
   flightNumber: "Flight Number",
   from: "From",
   to: "To",
-  ETA: "ETA",
   ETD: "ETD",
+  ETA: "ETA",
   site: "Site",
   delay: "Delay",
 };
@@ -138,9 +130,7 @@ const tableHeaders: Types.TableHeader = {
 function navigate(id: number) {
   router.push({ name: "FlightDetails", params: { id } });
 }
-function redirect() {}
-
-function notImplemented() {
-  alert("Not implemented yet");
+function newFlight() {
+  router.push({ name: "NewFlight" });
 }
 </script>

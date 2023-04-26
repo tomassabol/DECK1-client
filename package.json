@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-multiselect": "^3.0.0-beta.1"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.13",

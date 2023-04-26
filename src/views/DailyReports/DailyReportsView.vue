@@ -1,13 +1,6 @@
 <template>
   <div class="flex flex-col m-14 gap-12 w-full">
-    <div class="flex justify-between items-end">
-      <PageTitle :primaryText="title" />
-      <ButtonReusable
-        text="New Report"
-        @click="navigate"
-        :loading="isLoading"
-      />
-    </div>
+    <PageTitle :primaryText="title" />
     <Table
       :tableHeaders="tableHeaders"
       :tableData="dailyReports"

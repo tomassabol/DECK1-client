@@ -57,6 +57,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "FlightDetails",
     component: () => import("@/views/Flights/FlightDetails.vue"),
   },
+  {
+    path: "/Flights/new",
+    name: "NewFlight",
+    component: () => import("@/views/Flights/CreateFlight.vue"),
+  },
 ];
 
 const router = createRouter({

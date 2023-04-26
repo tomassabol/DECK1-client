@@ -1,16 +1,20 @@
 <template>
   <div class="flex flex-col gap-1">
     <input
-      :value="value"
-      type="text"
+      :value="modelValue"
+      :type="type ? type : 'text'"
       class="border-2 border-gray-100 w-64 h-10 rounded-md text-lg text-center"
       :disabled="isDisabled"
+      :placeholder="placeholder"
+      v-on:input="$emit('update:modelValue', $event.target?.value)"
     />
   </div>
 </template>
 <script setup lang="ts">
 defineProps<{
-  value: string | number;
+  type?: string;
+  modelValue?: string | number;
   isDisabled?: boolean;
+  placeholder?: string;
 }>();
 </script>
