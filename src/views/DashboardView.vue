@@ -4,11 +4,12 @@
     <div class="mt-72">
       <h1 class="font-bold text-2xl mb-8">Today</h1>
       <div class="flex items-center justify-center">
-        <div
-          class="flex flex-row flex-wrap gap-x-24 gap-y-8 justify-evenly w-10/12"
-        >
+        <div class="flex flex-row flex-wrap gap-x-6 gap-y-8 justify-evenly">
           <CardReusable v-for="i in 4" :key="i" />
         </div>
+        <!-- <div class="flex flex-row flex-wrap gap-x-6 gap-y-8 justify-evenly">
+          <CardReusable v-for="i in 4" :key="i" />
+        </div> -->
       </div>
     </div>
   </div>
