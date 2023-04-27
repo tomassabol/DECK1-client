@@ -24,9 +24,9 @@ namespace Types {
     delayTime?: number;
     delayDesc?: string;
     maintenace: boolean;
-    plannedMaintenance?: boolean;
-    unplannedMaintenance?: boolean;
-    otherMaintenance?: boolean;
+    plannedMaintenance: boolean;
+    unplannedMaintenance: boolean;
+    otherMaintenance: boolean;
     maintenanceNote?: string;
     baseAndEquipment: boolean;
     note?: string;

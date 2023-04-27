@@ -2,7 +2,7 @@
   <div class="flex flex-col m-14 gap-12 w-full">
     <div class="flex justify-between items-end">
       <PageTitle primaryText="Daily Updates" />
-      <ButtonReusable text="New Update" />
+      <ButtonReusable text="New Update" @click.prevent="navigate" />
     </div>
     <Table :tableHeaders="tableHeaders">
       <TableRow
@@ -60,4 +60,8 @@ const tableHeaders: Types.TableHeader = {
   date: "Date",
   delay: "Delay",
 };
+
+function navigate() {
+  router.push({ name: "NewDailyUpdate" });
+}
 </script>

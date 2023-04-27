@@ -4,14 +4,22 @@
       name=""
       id=""
       class="border-2 border-gray-100 rounded-md text-lg w-96"
-      :value="value"
+      :value="modelValue"
       :disabled="isDisabled"
+      v-on:input="
+        $emit(
+          'update:modelValue',
+          //@ts-expect-error
+          $event.target?.value
+        )
+      "
     ></textarea>
   </div>
 </template>
 <script setup lang="ts">
 defineProps<{
-  value: string;
+  modelValue?: string | number;
   isDisabled?: boolean;
+  placeholder?: string;
 }>();
 </script>

@@ -193,4 +193,18 @@ export default {
     });
     return promise;
   },
+
+  getFlightsMinimalData: async () => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        {
+          flights {
+            id
+            flightNumber
+          }
+        }
+      `,
+    });
+    return promise;
+  },
 };
