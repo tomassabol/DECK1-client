@@ -6,33 +6,33 @@
     <div class="flex flex-col gap-12 w-full mt-6" v-if="location">
       <div>
         <Label>ID</Label>
-        <Input :value="location.id" :isDisabled="true" />
+        <Input v-model="location.id" :isDisabled="true" />
       </div>
       <div>
         <Label>Name</Label>
-        <Input :value="location.name" :isDisabled="true" />
+        <Input v-model="location.name" :isDisabled="true" />
       </div>
       <div>
         <Label>Coordinates</Label>
         <div class="flex gap-x-6">
-          <Input :value="location.lat" :isDisabled="true" />
-          <Input :value="location.lng" :isDisabled="true" />
+          <Input v-model="location.lat" :isDisabled="true" />
+          <Input v-model="location.lng" :isDisabled="true" />
         </div>
       </div>
       <div>
         <Label>Type</Label>
-        <Input :value="location.type" :isDisabled="true" />
+        <Input v-model="location.type" :isDisabled="true" />
       </div>
       <div>
         <Label><span class="text-2xl">Site</span></Label>
         <div class="flex flex-wrap gap-6">
           <div class="flex flex-col">
             <Label>ID</Label>
-            <Input :value="location.site.id" :isDisabled="true" />
+            <Input v-model="location.site.id" :isDisabled="true" />
           </div>
           <div class="flex flex-col">
             <Label>Name</Label>
-            <Input :value="location.site.name" :isDisabled="true" />
+            <Input v-model="location.site.name" :isDisabled="true" />
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@
           </TabButton>
         </div>
       </div>
-      <ButtonReusable text="New Location" @click.prevent="" />
+      <ButtonReusable text="New Location" @click.prevent="newSite" />
     </div>
     <div class="flex flex-col gap-12 w-full mt-4">
       <Table :tableHeaders="tableHeaders">
@@ -147,4 +147,7 @@ const navigate = (id: number, type: string) => {
     router.push({ name: "SiteDetails", params: { id } });
   }
 };
+function newSite() {
+  router.push({ name: "NewLocation" });
+}
 </script>

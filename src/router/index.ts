@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Locations/LocationsView.vue"),
   },
   {
+    path: "/Sites/new",
+    name: "NewLocation",
+    component: () => import("@/views/Locations/CreateLocation.vue"),
+  },
+  {
     path: "/Locations/:id",
     name: "LocationDetails",
     component: () => import("@/views/Locations/LocationDetails.vue"),

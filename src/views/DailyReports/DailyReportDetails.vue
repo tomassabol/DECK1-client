@@ -12,7 +12,7 @@
       <div class="flex gap-6">
         <div>
           <Label>ID</Label>
-          <Input :value="dailyReport.id" :isDisabled="true" />
+          <Input v-model="dailyReport.id" :isDisabled="true" />
         </div>
         <div>
           <Label>Date</Label>

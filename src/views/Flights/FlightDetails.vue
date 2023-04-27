@@ -196,8 +196,6 @@ const route = useRoute();
 const id = route.params.id;
 
 const flight: Ref<Types.Flight | null> = ref(null);
-const heliports: Ref<Types.Location[]> = ref([]);
-const via: Ref<Types.Location[]> = ref([]);
 
 onBeforeMount(() => {
   getFlight();
@@ -208,17 +206,6 @@ function getFlight() {
   FlightService.getFlight(flightId)
     .then((res) => {
       flight.value = res.data.data.flightById;
-    })
-    .finally(() => {
-      getFlightDetails(flight.value?.site.id as number);
-    });
-}
-
-function getFlightDetails(siteId: number) {
-  FlightService.getFlightDetails(siteId)
-    .then((res) => {
-      heliports.value = res.data.data.heliportsPerSite;
-      via.value = res.data.data.viaPerSite;
     })
     .catch((err) => {
       console.log(err);

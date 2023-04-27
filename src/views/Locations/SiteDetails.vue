@@ -7,11 +7,11 @@
       <div class="flex gap-6 flex-wrap">
         <div>
           <Label>ID</Label>
-          <Input :value="site.id" :isDisabled="true" />
+          <Input v-model="site.id" :isDisabled="true" />
         </div>
         <div>
           <Label>Name</Label>
-          <Input :value="site.name" :isDisabled="true" />
+          <Input v-model="site.name" :isDisabled="true" />
         </div>
       </div>
       <div class="flex flex-col gap-2">

@@ -51,4 +51,49 @@ export default {
     });
     return promise;
   },
+
+  getSites: async () => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        {
+          sites {
+            id
+            name
+          }
+        }
+      `,
+    });
+    return promise;
+  },
+
+  createSite: async (site: Types.CreateSite) => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+        mutation {
+          createSite(data: { name: "${site.name}" }) {
+            id
+          }
+        }
+      `,
+    });
+    return promise;
+  },
+  createLoaction: async (location: Types.CreateLocation) => {
+    const promise = axios.post(axiosConfig.baseURL, {
+      query: `
+       mutation {
+          createLocation(data: { 
+            name: "${location.name}" 
+            lat: ${location.lat} 
+            lng: ${location.lng}
+            type: "${location.type}"
+            siteId: ${location.siteId} 
+          }) {
+            id
+          }
+        }
+        `,
+    });
+    return promise;
+  },
 };
