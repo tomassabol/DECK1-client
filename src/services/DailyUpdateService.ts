@@ -17,8 +17,42 @@ export default {
               flight {
                 id
                 flightNumber
+                date
               }
               delay
+            }
+          }
+        `,
+      },
+      axiosConfig
+    );
+    return promise;
+  },
+
+  getDailyUpdate: async (id: number | string) => {
+    const promise = await axios.post(
+      axiosConfig.baseURL,
+      {
+        query: `
+          {
+            dailyUpdate(id: ${id}) {
+              id
+              flight {
+                id
+                flightNumber
+              }
+              wasFlight
+              delay
+              delayCode
+              delayTime
+              delayDesc
+              maintenance
+              plannedMaintenance
+              unplannedMaintenance
+              otherMaintenance
+              maintenanceNote
+              baseAndEquipment
+              note
             }
           }
         `,

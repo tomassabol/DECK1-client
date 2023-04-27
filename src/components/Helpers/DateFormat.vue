@@ -8,6 +8,6 @@
 import { dateFormat } from "@/utils/dateFormat";
 
 defineProps<{
-  date: string;
+  date: string | Date;
 }>();
 </script>

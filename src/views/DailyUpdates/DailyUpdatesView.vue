@@ -8,12 +8,22 @@
       <TableRow
         v-for="dailyUpdate in dailyUpdates"
         :key="dailyUpdate.id"
-        class="flex-auto bg-gray-50 text-center border-t border-slate-150 h-12"
+        class="flex-auto bg-gray-50 text-center border-t border-slate-150 h-12 cursor-pointer"
+        @click.prevent="navigateToDailyUpdate(dailyUpdate.id)"
       >
         <TableData>{{ dailyUpdate.id }}</TableData>
         <TableData>{{ dailyUpdate.flight.flightNumber }}</TableData>
-        <TableData>{{ dailyUpdate.flight.date }}</TableData>
-        <TableData>{{ dailyUpdate.delay }}</TableData>
+        <TableData><DateFormat :date="dailyUpdate.flight.date" /></TableData>
+        <TableData>
+          <span
+            v-if="dailyUpdate.delay === false"
+            class="bg-green-100 text-green-700 p-1 px-3 rounded-md"
+            >on time</span
+          >
+          <span v-else class="bg-red-100 text-red-700 p-1 px-3 rounded-md"
+            >delayed</span
+          >
+        </TableData>
       </TableRow>
       <TableBody v-if="dailyUpdates.length === 0">
         <TableRow
@@ -35,6 +45,7 @@ import TableData from "@/components/Tables/TableData.vue";
 import { useRouter } from "vue-router";
 import { Ref, onBeforeMount, ref } from "vue";
 import DailyUpdateservice from "@/services/DailyUpdateService";
+import DateFormat from "@/components/Helpers/DateFormat.vue";
 
 const router = useRouter();
 
@@ -63,5 +74,8 @@ const tableHeaders: Types.TableHeader = {
 
 function navigate() {
   router.push({ name: "NewDailyUpdate" });
+}
+function navigateToDailyUpdate(id: number) {
+  router.push({ name: "DailyUpdateDetails", params: { id } });
 }
 </script>

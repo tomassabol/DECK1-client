@@ -1,6 +1,7 @@
 <template>
   <SwitchGroup as="div" class="flex items-center">
     <Switch
+      :disabled="disabled"
       v-model="enabled"
       @update:model-value="$emit('update:modelValue', enabled)"
       :class="[
@@ -25,8 +26,15 @@
 <script setup lang="ts">
 import { ref, toRefs } from "vue";
 import { Switch, SwitchGroup, SwitchLabel } from "@headlessui/vue";
-const props = defineProps<{
-  modelValue: boolean;
-}>();
+
+const props = withDefaults(
+  defineProps<{
+    modelValue: boolean;
+    disabled?: boolean;
+  }>(),
+  {
+    disabled: false,
+  }
+);
 const enabled = ref(props.modelValue);
 </script>
